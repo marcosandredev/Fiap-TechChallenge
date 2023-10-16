@@ -16,5 +16,8 @@ namespace CBF.Domain.Entities
         public DateTime DtInicioContrato { get; set; }
         public DateTime DtPrevisaoFimContrato { get; set; }
         public double VlTransferencia { get; set; }
+        public Jogador Jogador { get; set; }
+        public Clube ClubeAnterior { get; set; }
+        public Clube ClubeNovo { get; set; }
     }
 }
