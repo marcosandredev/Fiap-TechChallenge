@@ -17,5 +17,7 @@ namespace CBF.Domain.Entities
         public int Assistencias { get; set; }
         public int Amarelos { get; set; }
         public int Vermelhos { get; set; }
+        public Jogador Jogador { get; set; }
+        public Clube Clube { get; set; }
     }
 }
