@@ -1,16 +1,18 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.EntityFrameworkCore;
 using CBF.Domain.Entities;
+using CBF.Infra.Mappings;
 
 namespace CBF.API.Configuration
 {
-    public class JogadorConfiguration : IEntityTypeConfiguration<Jogador>
+    public class JogadorMapping : BaseMapping<Jogador>
     {
 
-        public void Configure(EntityTypeBuilder<Jogador> builder)
+        public override void Configure(EntityTypeBuilder<Jogador> builder)
         {
+            base.Configure(builder);
+
             builder.ToTable("Jogador");
-            builder.HasKey(j => j.Id);
             builder.Property(j => j.Nome).IsRequired().HasMaxLength(80);
             builder.Property(j => j.DtNascimento).IsRequired();
             builder.Property(j => j.Nacionalidade).IsRequired().HasMaxLength(30);

@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 namespace CBF.Infra.Mappings;
 public class BaseMapping<T> : IEntityTypeConfiguration<T> where T : EntityBase
 {
-    public void Configure(EntityTypeBuilder<T> builder)
+    public virtual void Configure(EntityTypeBuilder<T> builder)
     {
         builder.HasKey(x => x.Id);
 
