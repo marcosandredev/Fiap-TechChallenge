@@ -13,7 +13,7 @@ namespace CBF.Domain.Entities
         public int IdClube { get; set; }
         public DateTime DtInicioContrato { get; set; }
         public DateTime? DtFimContrato { get; set; }
-        public decimal Salario { get; set; }
+        public double Salario { get; set; }
         public Jogador Jogador { get; set; }
         public Clube Clube { get; set; }
     }
