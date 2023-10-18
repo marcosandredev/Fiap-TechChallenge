@@ -18,7 +18,7 @@ namespace CBF.Domain.Entities
         public ICollection<Transferencias> Transferencias { get; set; }
         public ICollection<EstatisticaJogador> EstatisticasJogador { get; set; }
         public ICollection<EstatisticaJogadorClube> EstatisticasJogadorClube { get; set; }
-        public ICollection<ClubeJogador> ClubesJogadores { get; set; }
+        public ICollection<ClubeJogador> Clubes { get; set; }
 
         
     }
