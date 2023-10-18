@@ -97,7 +97,7 @@ public static class DependencyInjection
         return services;
     }
         //adicionado
-    public static IServiceCollection AddAutorization(this IServiceCollection services, IConfiguration configuration)
+    public static IServiceCollection AddAuthorization(this IServiceCollection services, IConfiguration configuration)
     {
 
             //var configuration = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();

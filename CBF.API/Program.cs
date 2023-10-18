@@ -8,7 +8,7 @@ builder.Services.AddControllers();
 builder.Services.AddInfrastructureAndServices(builder.Configuration)
                 .AddDatabaseContext(builder.Configuration)
                 .AddPresentation()
-                .AddAutorization(builder.Configuration); //adicionado
+                .AddAuthorization(builder.Configuration); //adicionado
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
