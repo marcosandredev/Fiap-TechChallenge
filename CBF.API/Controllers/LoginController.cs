@@ -19,7 +19,7 @@ namespace CBF.API.Controllers
             _tokenService = tokenService;
         }
 
-        [HttpGet("GerarToken")]
+        [HttpPost("GerarToken")]
         public IActionResult GerarToken([FromBody] LoginDTO loginDTO)
         {
             try
