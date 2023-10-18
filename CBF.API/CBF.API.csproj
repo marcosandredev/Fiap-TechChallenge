@@ -16,7 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\CBF.Services\CBF.Services.csproj" />
+    <!--ProjectReference Include="..\..\CBF.Services\CBF.Services.csproj" /-->
     <ProjectReference Include="..\CBF.Domain\CBF.Domain.csproj" />
     <ProjectReference Include="..\CBF.Infra\CBF.Infra.csproj" />
     <ProjectReference Include="..\CBF.Service\CBF.Service.csproj" />
