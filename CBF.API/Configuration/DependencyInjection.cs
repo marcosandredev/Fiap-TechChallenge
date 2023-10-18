@@ -3,10 +3,14 @@ using CBF.Infra.Context;
 using CBF.Service.Validation;
 using FluentValidation;
 using FluentValidation.AspNetCore;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Scrutor;
+using System.Text;
 using System.Text.Json.Serialization;
 
 namespace CBF.API.Configuration;
@@ -85,9 +89,39 @@ public static class DependencyInjection
                     },
                     new List<string>()
                 }
-                });
+            });
         });
 
+
+
         return services;
+    }
+        //adicionado
+    public static IServiceCollection AddAutorization(this IServiceCollection services, IConfiguration configuration)
+    {
+
+            //var configuration = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
+            var key = Encoding.ASCII.GetBytes(configuration.GetValue<string>("Secret"));
+
+            services.AddAuthentication(x =>
+            {
+                x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(y =>
+            {
+                y.RequireHttpsMetadata = false;
+                y.SaveToken = true;
+                y.TokenValidationParameters = new TokenValidationParameters()
+                {
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(key),
+                    ValidateIssuer = false,
+                    ValidateAudience = false,
+                };
+
+            });
+
+            return services;
+
     }
 }

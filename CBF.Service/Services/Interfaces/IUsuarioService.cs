@@ -7,8 +7,9 @@ using System.Threading.Tasks;
 
 namespace CBF.Service.Services.Interfaces
 {
-    public interface ITokenService
+    public interface IUsuarioService
     {
-        string GetToken(Usuario usuario);
+        Usuario GetUsuarioLoginESenha(string login, string senha);
+
     }
 }

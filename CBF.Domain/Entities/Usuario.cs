@@ -13,7 +13,6 @@ namespace CBF.Domain.Entities
         public string Login { get; set; }
         public string Senha { get; set; }
         public Permissao Permissao { get; set; }
-
         public Usuario()
         {
 

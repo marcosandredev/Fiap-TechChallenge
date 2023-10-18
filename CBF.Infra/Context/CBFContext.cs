@@ -12,6 +12,8 @@ public class CBFContext : DbContext
     public DbSet<EstatisticaJogador> EstatisticasJogador { get; set; }
     public DbSet<EstatisticaJogadorClube> EstatisticasJogadorClube { get; set; }
     public DbSet<ClubeJogador> ClubesJogadores { get; set; }
+    public DbSet<Usuario> Usuarios { get; set; }
+
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
