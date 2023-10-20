@@ -1,10 +1,5 @@
 ﻿using CBF.Domain.Entities;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CBF.Infra.Mappings
 {
@@ -13,9 +8,14 @@ namespace CBF.Infra.Mappings
         public override void Configure(EntityTypeBuilder<Usuario> builder)
         {
             base.Configure(builder);
-            builder.Property(u => u.Login).HasMaxLength(30).IsRequired();
-            builder.Property(u => u.Senha).HasMaxLength(12).IsRequired();
+            builder.Property(u => u.Nome).HasMaxLength(100).IsRequired();
+            builder.Property(u => u.Email).HasMaxLength(80).IsRequired();
+            builder.Property(u => u.NomeUsuario).HasMaxLength(30).IsRequired();
+            builder.Property(u => u.SenhaCriptografa).HasMaxLength(20).IsRequired();
             builder.Property(u => u.Permissao).HasConversion<string>().IsRequired();
+
+            builder.HasIndex(x => x.Email).IsUnique();
+            builder.HasIndex(x => x.NomeUsuario).IsUnique();
 
         }
     }

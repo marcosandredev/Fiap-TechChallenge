@@ -24,7 +24,7 @@ namespace CBF.Infra.Mappings
             builder.Property(t => t.DtPrevisaoFimContrato).IsRequired();
             builder.HasOne(t => t.Jogador).WithMany(j => j.Transferencias).HasForeignKey(t => t.IdJogador);
             builder.HasOne(t => t.ClubeAnterior).WithMany(c => c.TransferenciasClubeAnterior).HasForeignKey(t => t.IdClubeAnterior);
-            builder.HasOne(t => t.ClubeAnterior).WithMany(c => c.TransferenciasClubeNovo).HasForeignKey(t => t.IdClubeNovo);
+            builder.HasOne(t => t.ClubeNovo).WithMany(c => c.TransferenciasClubeNovo).HasForeignKey(t => t.IdClubeNovo);
             
 
         }

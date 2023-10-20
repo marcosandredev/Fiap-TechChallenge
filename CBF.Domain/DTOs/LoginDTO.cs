@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace CBF.Domain.DTOs
+﻿namespace CBF.Domain.DTOs
 {
     public class LoginDTO
     {
-        public string Login { get; set; }
+        public string Email { get; set; }
         public string Senha { get; set; }
     }
 }

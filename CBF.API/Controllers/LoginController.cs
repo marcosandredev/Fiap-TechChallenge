@@ -1,53 +1,38 @@
 ﻿using CBF.Domain.DTOs;
 using CBF.Service.Services.Interfaces;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System;
 
 namespace CBF.API.Controllers
 {
-    [Route("api/[login]")]
+    [Route("api/[controller]")]
     [ApiController]
     public class LoginController : ControllerBase
     {
         private readonly IUsuarioService _usuarioService;
-        private readonly ITokenService _tokenService;
 
-        public LoginController(IUsuarioService usuarioRepository, ITokenService tokenService)
+        public LoginController(IUsuarioService usuarioService)
         {
-            _usuarioService = usuarioRepository;
-            _tokenService = tokenService;
+            _usuarioService = usuarioService;
         }
 
         [HttpPost("GerarToken")]
-        public IActionResult GerarToken([FromBody] LoginDTO loginDTO)
+        public async Task<IActionResult> GerarToken([FromBody] LoginDTO loginDTO)
         {
             try
             {
-                var usuario = _usuarioService.GetUsuarioLoginESenha(loginDTO.Login, loginDTO.Senha);
+                var token = await _usuarioService.GerarToken(loginDTO);
 
-                if (usuario == null)
-                    return NotFound("Usuário ou senha inválidos");
+                if (token == null)
+                    return NotFound();
 
-                var token = _tokenService.GetToken(usuario);
-
-                usuario.Senha = null;
-
-                return Ok(new
-                {
-                    Usuario = usuario,
-                    token = token,
-                });
+                return Ok(token);
             }
             catch (ApplicationException e)
             {
 
                 return BadRequest(e.Message);
-             
+
             }
-         
-
-
         }
     }
 }
