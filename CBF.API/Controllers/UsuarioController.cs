@@ -1,5 +1,6 @@
 ﻿using CBF.Domain.DTOs.Request;
 using CBF.Service.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CBF.API.Controllers;
@@ -23,6 +24,7 @@ public class UsuarioController : ControllerBase
     }
 
     [HttpGet("{id}")]
+    [Authorize]
     public async Task<IActionResult> GetById([FromRoute] long id)
     {
         var response = await _usuarioService.GetByIdAsync(id);
