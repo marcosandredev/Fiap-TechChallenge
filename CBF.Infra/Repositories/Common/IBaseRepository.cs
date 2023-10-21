@@ -7,7 +7,7 @@ public interface IBaseRepository<T> where T : EntityBase
 {
     Task<IEnumerable<T>> GetAllAsync(Expression<Func<T, bool>> filter = null,
             Func<IQueryable<T>, IIncludableQueryable<T, object>> include = null, bool asNoTracking = false);
-    Task<T> GetByIdAsync(Guid id, Func<IQueryable<T>, IIncludableQueryable<T, object>> include = null);
+    Task<T> GetByIdAsync(long id, Func<IQueryable<T>, IIncludableQueryable<T, object>> include = null);
     Task<T> AddAsync(T entity);
     Task<T> UpdateAsync(T entity);
     Task DeleteAsync(T entity);

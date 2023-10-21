@@ -9,7 +9,7 @@ namespace CBF.Domain.Entities
 {
     public class EstatisticaJogador : EntityBase
     {
-        public int IdJogador { get; set; }
+        public long IdJogador { get; set; }
         public int Ano { get; set; }
         public int Partidas { get; set; }
         public int Gols { get; set; }

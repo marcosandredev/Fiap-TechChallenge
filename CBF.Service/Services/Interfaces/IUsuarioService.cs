@@ -1,11 +1,13 @@
 ﻿using CBF.Domain.DTOs;
-using CBF.Domain.Entities;
+using CBF.Domain.DTOs.Request;
+using CBF.Domain.DTOs.Response;
 
 namespace CBF.Service.Services.Interfaces
 {
     public interface IUsuarioService
     {
-        Task<string> GerarToken(LoginDTO login);
-
+        Task<UsuarioResponse> CreateAsync(UsuarioRequest request);
+        Task<UsuarioResponse> GetByIdAsync(long id);
+        Task<UsuarioResponse> GetUsuarioByEmail(string email);
     }
 }

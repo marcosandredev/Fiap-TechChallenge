@@ -9,9 +9,9 @@ namespace CBF.Domain.Entities
 {
     public class Transferencias : EntityBase
     {
-        public int IdJogador { get; set; }
-        public int IdClubeAnterior { get; set; }
-        public int IdClubeNovo { get; set; }
+        public long IdJogador { get; set; }
+        public long IdClubeAnterior { get; set; }
+        public long IdClubeNovo { get; set; }
         public DateTime DtTransferencia { get; set; }
         public DateTime DtInicioContrato { get; set; }
         public DateTime DtPrevisaoFimContrato { get; set; }

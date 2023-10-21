@@ -9,8 +9,8 @@ namespace CBF.Domain.Entities
 {
     public class ClubeJogador : EntityBase
     {
-        public int IdJogador { get; set; }
-        public int IdClube { get; set; }
+        public long IdJogador { get; set; }
+        public long IdClube { get; set; }
         public DateTime DtInicioContrato { get; set; }
         public DateTime? DtFimContrato { get; set; }
         public double Salario { get; set; }

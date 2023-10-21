@@ -8,31 +8,19 @@ namespace CBF.API.Controllers
     [ApiController]
     public class LoginController : ControllerBase
     {
-        private readonly IUsuarioService _usuarioService;
+        private readonly ITokenService _tokenService;
 
-        public LoginController(IUsuarioService usuarioService)
+        public LoginController(ITokenService tokenService)
         {
-            _usuarioService = usuarioService;
+            _tokenService = tokenService;
         }
 
         [HttpPost("GerarToken")]
         public async Task<IActionResult> GerarToken([FromBody] LoginDTO loginDTO)
         {
-            try
-            {
-                var token = await _usuarioService.GerarToken(loginDTO);
+            var token = await _tokenService.GerarToken(loginDTO);
 
-                if (token == null)
-                    return NotFound();
-
-                return Ok(token);
-            }
-            catch (ApplicationException e)
-            {
-
-                return BadRequest(e.Message);
-
-            }
+            return Ok(token);
         }
     }
 }

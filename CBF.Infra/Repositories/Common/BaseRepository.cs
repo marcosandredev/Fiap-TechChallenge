@@ -37,7 +37,7 @@ public class BaseRepository<T> : IBaseRepository<T> where T : EntityBase
         await _context.SaveChangesAsync();
     }
 
-    public virtual async Task<T> GetByIdAsync(Guid id, Func<IQueryable<T>, IIncludableQueryable<T, object>> include = null)
+    public virtual async Task<T> GetByIdAsync(long id, Func<IQueryable<T>, IIncludableQueryable<T, object>> include = null)
     {
         var query = _dbSet.AsQueryable();
 

@@ -1,4 +1,9 @@
-﻿using CBF.Domain.DTOs;
+﻿using AutoMapper;
+using CBF.Domain.DTOs;
+using CBF.Domain.DTOs.Request;
+using CBF.Domain.DTOs.Response;
+using CBF.Domain.Entities;
+using CBF.Domain.Exceptions;
 using CBF.Infra.Repositories.Interfaces;
 using CBF.Service.Services.Interfaces;
 using SecureIdentity.Password;
@@ -8,26 +13,39 @@ public class UsuarioService : IUsuarioService
 {
     private readonly IUsuarioRepository _usuarioRepository;
     private readonly ITokenService _tokenService;
+    private readonly IMapper _mapper;
 
-    public UsuarioService(IUsuarioRepository usuarioRepository, ITokenService tokenService)
+    public UsuarioService(IUsuarioRepository usuarioRepository, ITokenService tokenService, IMapper mapper)
     {
         _usuarioRepository = usuarioRepository;
         _tokenService = tokenService;
+        _mapper = mapper;
     }
 
-    public async Task<string> GerarToken(LoginDTO login)
+    public async Task<UsuarioResponse> CreateAsync(UsuarioRequest request)
     {
+        var usuario = _mapper.Map<Usuario>(request);
 
-        var usuario = await _usuarioRepository.GetByNomeUsuarioAsync(login.Email);
+        usuario.SenhaCriptografa = PasswordHasher.Hash(usuario.SenhaCriptografa);
 
-        if (usuario is null)
-            return null;
+        var model = await _usuarioRepository.AddAsync(usuario);
 
-        var senhaCorreta = PasswordHasher.Verify(usuario.SenhaCriptografa, login.Senha);
-
-        if (!senhaCorreta)
-            return null;
-
-        return _tokenService.GetToken(usuario);
+        return _mapper.Map<UsuarioResponse>(model);
     }
+
+    public async Task<UsuarioResponse> GetByIdAsync(long id)
+    {
+        var model = await _usuarioRepository.GetByIdAsync(id) ?? throw new NotFoundException();
+
+        return _mapper.Map<UsuarioResponse>(model);
+    }
+
+    public async Task<UsuarioResponse> GetUsuarioByEmail(string email)
+    {
+        var model = await _usuarioRepository.GetByEmailAsync(email) ?? throw new NotFoundException();
+
+        return _mapper.Map<UsuarioResponse>(model);
+    }
+
+    
 }

@@ -53,6 +53,7 @@ public static class DependencyInjection
             .AddControllers(options =>
             {
                 options.Filters.Add(typeof(ValidationFilter));
+                options.Filters.Add<ApplicationExceptionFilter>();
             })
             .AddJsonOptions(options =>
             {
@@ -99,8 +100,6 @@ public static class DependencyInjection
         //adicionado
     public static IServiceCollection AddAuthorization(this IServiceCollection services, IConfiguration configuration)
     {
-
-            //var configuration = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
             var key = Encoding.ASCII.GetBytes(configuration.GetValue<string>("Secret"));
 
             services.AddAuthentication(x =>

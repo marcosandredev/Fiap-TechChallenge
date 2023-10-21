@@ -1,9 +1,10 @@
-﻿using CBF.Domain.Entities;
+﻿using CBF.Domain.DTOs;
+using CBF.Domain.Entities;
 
 namespace CBF.Service.Services.Interfaces
 {
     public interface ITokenService
     {
-        string GetToken(Usuario usuario);
+        Task<string> GerarToken(LoginDTO login);
     }
 }
