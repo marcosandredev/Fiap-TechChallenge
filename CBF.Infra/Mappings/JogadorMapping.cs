@@ -16,8 +16,10 @@ namespace CBF.API.Configuration
             builder.Property(j => j.Nome).IsRequired().HasMaxLength(80);
             builder.Property(j => j.DtNascimento).IsRequired();
             builder.Property(j => j.Nacionalidade).IsRequired().HasMaxLength(30);
-            builder.Property(j => j.Posicao).IsRequired().HasMaxLength(2);
-            builder.Property(j => j.Peso).IsRequired();
+            builder.Property(j => j.Posicao).HasConversion<string>().IsRequired();
+            builder.Property(j => j.PePreferido).HasConversion<string>().IsRequired();
+            builder.Property(j => j.Peso).IsRequired().HasPrecision(5, 2);
+            builder.Property(j => j.Altura).IsRequired().HasPrecision(3 , 2);
             builder.HasMany(j => j.Transferencias).WithOne(t => t.Jogador).HasForeignKey(t => t.IdJogador);
             builder.HasMany(j => j.EstatisticasJogador).WithOne(e => e.Jogador).HasForeignKey(e => e.IdJogador);
             builder.HasMany(j => j.EstatisticasJogadorClube).WithOne(ec => ec.Jogador).HasForeignKey(ec => ec.IdJogador);
