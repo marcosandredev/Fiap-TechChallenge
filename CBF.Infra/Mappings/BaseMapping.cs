@@ -19,7 +19,6 @@ public class BaseMapping<T> : IEntityTypeConfiguration<T> where T : EntityBase
            .ValueGeneratedOnAdd();
 
         builder.Property(x => x.Updated)
-           .IsRequired()
            .HasColumnName("Updated")
            .HasColumnType("SMALLDATETIME")
            .ValueGeneratedOnAddOrUpdate();

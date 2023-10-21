@@ -11,4 +11,5 @@ public interface IBaseRepository<T> where T : EntityBase
     Task<T> AddAsync(T entity);
     Task<T> UpdateAsync(T entity);
     Task DeleteAsync(T entity);
+    Task<bool> ExistAsync(Expression<Func<T, bool>> filter);
 }

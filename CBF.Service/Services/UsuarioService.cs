@@ -26,7 +26,7 @@ public class UsuarioService : IUsuarioService
     {
         var usuario = _mapper.Map<Usuario>(request);
 
-        usuario.SenhaCriptografa = PasswordHasher.Hash(usuario.SenhaCriptografa);
+        usuario.SenhaCriptografa = PasswordHasher.Hash(request.Senha);
 
         var model = await _usuarioRepository.AddAsync(usuario);
 

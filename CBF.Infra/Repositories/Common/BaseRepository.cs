@@ -63,4 +63,9 @@ public class BaseRepository<T> : IBaseRepository<T> where T : EntityBase
 
         return await query.ToListAsync();
     }
+
+    public virtual async Task<bool> ExistAsync(Expression<Func<T, bool>> filter)
+    {
+        return await _dbSet.AnyAsync(filter);
+    }
 }
