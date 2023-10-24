@@ -48,8 +48,11 @@ public class JogadorService : IJogadorService
 
     public async Task<IEnumerable<JogadorResponse>> BuscarJogadoresPorNacionalidadeAsync(string nacionalidade)
     {
-        var model = await _jogadorRepository.BuscarJogadoresPorNacionalidadeAsync(nacionalidade) ?? throw new NotFoundException();
-
+        var model = await _jogadorRepository.BuscarJogadoresPorNacionalidadeAsync(nacionalidade);
+        
+       if (model == null || !model.Any())
+            throw new NotFoundException(ExceptionMessage.Jogadores_Nasc_Not_Found);
+        
         return _mapper.Map<IEnumerable<JogadorResponse>>(model);
     }
 

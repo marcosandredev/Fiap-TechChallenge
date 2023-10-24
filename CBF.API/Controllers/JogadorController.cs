@@ -27,7 +27,7 @@ namespace CBF.API.Controllers
                 return Ok(response);
 
             }
-            catch (ApplicationException e)
+            catch (Exception e)
             {
 
                 return BadRequest(e.Message);
@@ -61,7 +61,7 @@ namespace CBF.API.Controllers
 
                 return Ok(new { Mensagem = "Jogador Atualizado!", jogadorAtualizado });
             }
-            catch (ApplicationException e)
+            catch (Exception e)
             {
 
                 return BadRequest(e.Message);
@@ -76,7 +76,7 @@ namespace CBF.API.Controllers
                 var jogador = await _jogadorService.BuscaJogadorPorIdAsync(id);
                 return Ok(jogador);
             }
-            catch (ApplicationException e)
+            catch (Exception e)
             {
 
                 return BadRequest(e.Message);
@@ -91,7 +91,7 @@ namespace CBF.API.Controllers
                 var jogadores = await _jogadorService.BuscarJogadoresPorNacionalidadeAsync(nacionalidade);
                 return Ok(jogadores);
             }
-            catch (ApplicationException e)
+            catch (Exception e)
             {
 
                 return BadRequest(e.Message);
