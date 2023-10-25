@@ -14,7 +14,7 @@ Critério de aceite (requisito mínimo)
 	
 - Transferencias	
 	- Em tranferencias, o clube anterior ou o novo clube podem ser Sem Clube ou Aposentado.
-	- As tranferencias só podem ser por venda, empréstimo, fim de contrato ou recisão;
+	- As tranferencias só podem ser por venda, empréstimo, retorno emprestimo, troca, fim de contrato ou recisão;
 
 - Jogadores
 	- Jogadores Aposentados devem ter uma flag dizendo que não estão ativos;
