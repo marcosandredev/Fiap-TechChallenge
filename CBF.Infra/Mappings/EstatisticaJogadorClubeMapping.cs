@@ -27,7 +27,9 @@ namespace CBF.Infra.Mappings
             builder.Property(e => e.Vermelhos).IsRequired();
             builder.HasOne(e => e.Jogador).WithMany(j => j.EstatisticasJogadorClube).HasForeignKey(e => e.IdJogador);
             builder.HasOne(e => e.Clube).WithMany(j => j.EstatisticasJogadorClube).HasForeignKey(e => e.IdClube);
-
+            builder.HasOne(t => t.Temporada)
+                .WithMany()
+                .HasForeignKey(t => t.IdTemporada);
         }
     }
 }

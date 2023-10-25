@@ -2,6 +2,7 @@
 public abstract class EntityBase
 {
     public long Id { get; set; }
-    public DateTime Created { get; set; } = DateTime.Now;
-    public DateTime? Updated { get; set; } = DateTime.Now;
+    public bool Ativo { get; set; }
+    public DateTime CriadoEm { get; set; }
+    public DateTime AtualizadoEm { get; set; }
 }

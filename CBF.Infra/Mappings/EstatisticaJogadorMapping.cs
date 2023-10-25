@@ -23,7 +23,9 @@ namespace CBF.Infra.Mappings
             builder.Property(e => e.Assistencias).IsRequired();
             builder.Property(e => e.Amarelos).IsRequired();
             builder.Property(e => e.Vermelhos).IsRequired();
-
+            builder.HasOne(t => t.Temporada)
+                .WithMany()
+                .HasForeignKey(t => t.IdTemporada);
 
         }
     }

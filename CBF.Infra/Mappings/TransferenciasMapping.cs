@@ -10,6 +10,7 @@ namespace CBF.Infra.Mappings
             base.Configure(builder);
 
             builder.ToTable("Transferencias");
+            builder.Property(x => x.DtTransferencia).HasConversion<string>().IsRequired();
             builder.Property(t => t.VlTransferencia).HasPrecision(18, 2);
             builder.Property(t => t.DtInicioContrato).IsRequired();
             builder.Property(t => t.IdJogador).IsRequired();
@@ -22,6 +23,9 @@ namespace CBF.Infra.Mappings
                 .WithMany(c => c.TransferenciasClubeNovo)
                 .HasForeignKey(t => t.IdClubeNovo)
                 .OnDelete(DeleteBehavior.NoAction);
+            builder.HasOne(t => t.Temporada)
+                .WithMany()
+                .HasForeignKey(t => t.IdTemporada);
         }
     }
 }

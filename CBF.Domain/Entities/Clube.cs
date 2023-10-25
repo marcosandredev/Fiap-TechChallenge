@@ -1,9 +1,4 @@
 ﻿using CBF.Domain.Entities.Common;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CBF.Domain.Entities
 {
@@ -11,6 +6,8 @@ namespace CBF.Domain.Entities
     {
         public string Nome { get; set; }
         public DateTime DtFundacao { get; set; }
+        public string Cidade { get; set; }
+        public string Estado { get; set; }
         public string Pais { get; set; }
 
         public ICollection<Transferencias> TransferenciasClubeAnterior { get; set; }

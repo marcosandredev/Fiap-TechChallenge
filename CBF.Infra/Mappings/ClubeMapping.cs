@@ -1,11 +1,6 @@
 ﻿using CBF.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CBF.Infra.Mappings
 {
@@ -18,6 +13,8 @@ namespace CBF.Infra.Mappings
             builder.ToTable("Clube");
             builder.Property(c => c.Nome).IsRequired().HasMaxLength(80);
             builder.Property(c => c.DtFundacao).IsRequired();
+            builder.Property(c => c.Cidade).IsRequired().HasMaxLength(80);
+            builder.Property(c => c.Estado).IsRequired().HasMaxLength(80);
             builder.Property(c => c.Pais).IsRequired().HasMaxLength(80);
             builder.HasMany(c => c.TransferenciasClubeAnterior).WithOne(t => t.ClubeAnterior).HasForeignKey(t => t.IdClubeAnterior);
             builder.HasMany(c => c.TransferenciasClubeNovo).WithOne(t => t.ClubeNovo).HasForeignKey(t => t.IdClubeNovo);
