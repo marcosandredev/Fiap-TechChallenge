@@ -30,7 +30,7 @@ namespace CBF.API.Controllers
         [HttpPost("Criar-Jogadores-Em-Massa")]
         public async Task<ActionResult> CriarJogadorMassa([FromBody] IList<JogadorRequest> request)
         {
-            IDictionary<string,string> nomesJogadores = new Dictionary<string,string>();
+            IList<string> messagem = new List<string>();
 
             var response = new JogadorResponse();
 
@@ -40,11 +40,11 @@ namespace CBF.API.Controllers
                 {
                     response = await _jogadorService.CadastrarJogadorAsync(jogador);
 
-                    nomesJogadores.Add(response.Nome,"Sucesso");
+                    messagem.Add($"{response.Nome} Sucesso!");
                 }
                 catch (Exception e)
                 {
-                    nomesJogadores.Add(jogador.Nome, e.Message);
+                    messagem.Add($"{jogador.Nome} {e.Message} !");
                 }
             }
 
