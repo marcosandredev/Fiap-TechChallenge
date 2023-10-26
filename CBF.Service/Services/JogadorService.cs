@@ -60,6 +60,10 @@ public class JogadorService : IJogadorService
     {
         var jogador = _mapper.Map<Jogador>(request);
 
+        bool exits = await _jogadorRepository.ExistAsync(j => j.Nome == jogador.Nome && j.DtNascimento == jogador.DtNascimento);
+
+        if (exits) throw new AlreadyExistsException();
+
         var model = await _jogadorRepository.AddAsync(jogador);
 
         return _mapper.Map<JogadorResponse>(model);

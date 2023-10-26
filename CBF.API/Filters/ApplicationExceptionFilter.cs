@@ -22,7 +22,6 @@ public class ApplicationExceptionFilter : IExceptionFilter
             context.HttpContext.Response.StatusCode = (int)HttpStatusCode.BadRequest;
             context.Result = new ObjectResult(exception.Message);
         }
-
         else
             UnknownError(context);
     }

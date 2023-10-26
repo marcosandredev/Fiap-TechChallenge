@@ -1,6 +1,8 @@
 ﻿using CBF.Domain.DTOs;
 using CBF.Domain.DTOs.Request;
 using CBF.Domain.Entities.Enums;
+using CBF.Infra.Repositories;
+using CBF.Infra.Repositories.Interfaces;
 using FluentValidation;
 using System;
 using System.Collections.Generic;

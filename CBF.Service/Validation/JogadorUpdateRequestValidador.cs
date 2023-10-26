@@ -26,8 +26,6 @@ namespace CBF.Service.Validation
 
             RuleFor(j => j.Peso)
                  .NotEmpty().WithMessage("Campo Peso é obrigatório!");
-        
-       
 
         }
     }

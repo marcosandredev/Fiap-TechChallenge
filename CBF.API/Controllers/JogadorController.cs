@@ -1,4 +1,6 @@
-﻿using CBF.Domain.DTOs.Request;
+﻿using Azure;
+using CBF.Domain.DTOs.Request;
+using CBF.Domain.DTOs.Response;
 using CBF.Service.Services.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -23,6 +25,30 @@ namespace CBF.API.Controllers
               var response = await _jogadorService.CadastrarJogadorAsync(request);
               
               return Ok(response);
+        }
+
+        [HttpPost("Criar-Jogadores-Em-Massa")]
+        public async Task<ActionResult> CriarJogadorMassa([FromBody] IList<JogadorRequest> request)
+        {
+            IDictionary<string,string> nomesJogadores = new Dictionary<string,string>();
+
+            var response = new JogadorResponse();
+
+            foreach (var jogador in request)
+            {
+                try
+                {
+                    response = await _jogadorService.CadastrarJogadorAsync(jogador);
+
+                    nomesJogadores.Add(response.Nome,"Sucesso");
+                }
+                catch (Exception e)
+                {
+                    nomesJogadores.Add(jogador.Nome, e.Message);
+                }
+            }
+
+            return Ok(new {Mensagem = "Status cadastro:", nomesJogadores});
         }
 
         [HttpDelete("Deletar-Jogador/{id}")]
