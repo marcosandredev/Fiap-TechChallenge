@@ -48,7 +48,7 @@ namespace CBF.API.Controllers
                 }
             }
 
-            return Ok(new {Mensagem = "Status cadastro:", nomesJogadores});
+            return Ok(new {Mensagem = "Status cadastro:", messagem });
         }
 
         [HttpDelete("Deletar-Jogador/{id}")]
