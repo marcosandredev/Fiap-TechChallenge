@@ -1,9 +1,4 @@
 ﻿using CBF.Domain.Entities.Common;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CBF.Domain.Entities
 {
@@ -11,6 +6,7 @@ namespace CBF.Domain.Entities
     {
         public long IdJogador { get; set; }
         public long IdClube { get; set; }
+        public long IdTemporada { get; set; }
         public int Ano { get; set; }
         public int Partidas { get; set; }
         public int Gols { get; set; }
@@ -19,5 +15,6 @@ namespace CBF.Domain.Entities
         public int Vermelhos { get; set; }
         public Jogador Jogador { get; set; }
         public Clube Clube { get; set; }
+        public Temporada Temporada { get; set; }
     }
 }

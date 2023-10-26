@@ -7,7 +7,7 @@ public static class IQueryableExtension
 {
     public static async Task<PagedResponse<T>> GetPagedAsync<T>(this IQueryable<T> query, int page = 1, double pageResults = 25f) where T : EntityBase
     {
-        query = query.OrderByDescending(x => x.Created);
+        query = query.OrderByDescending(x => x.CriadoEm);
 
         var totalItems = await query.CountAsync();
         var pageCount = Math.Ceiling(totalItems / pageResults);

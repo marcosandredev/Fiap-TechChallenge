@@ -12,15 +12,17 @@ public class BaseMapping<T> : IEntityTypeConfiguration<T> where T : EntityBase
         builder.Property(x => x.Id)
             .ValueGeneratedOnAdd();
 
-        builder.Property(x => x.Created)
-           .IsRequired()
-           .HasColumnName("Created")
-           .HasColumnType("SMALLDATETIME")
-           .ValueGeneratedOnAdd();
+        builder.Property(x => x.Ativo)
+            .IsRequired()
+            .HasColumnName("Ativo");
 
-        builder.Property(x => x.Updated)
-           .HasColumnName("Updated")
-           .HasColumnType("SMALLDATETIME")
-           .ValueGeneratedOnAddOrUpdate();
+        builder.Property(x => x.CriadoEm)
+           .IsRequired()
+           .HasColumnName("CriadoEm")
+           .HasColumnType("SMALLDATETIME");
+
+        builder.Property(x => x.AtualizadoEm)
+           .HasColumnName("AtualizadoEm")
+           .HasColumnType("SMALLDATETIME");
     }
 }

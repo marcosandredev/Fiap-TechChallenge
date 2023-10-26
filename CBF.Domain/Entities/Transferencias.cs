@@ -1,9 +1,5 @@
 ﻿using CBF.Domain.Entities.Common;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using CBF.Domain.Entities.Enums;
 
 namespace CBF.Domain.Entities
 {
@@ -12,6 +8,8 @@ namespace CBF.Domain.Entities
         public long IdJogador { get; set; }
         public long IdClubeAnterior { get; set; }
         public long IdClubeNovo { get; set; }
+        public long IdTemporada { get; set; }
+        public TipoTransferencia TipoTransferencia { get; set; }
         public DateTime DtTransferencia { get; set; }
         public DateTime DtInicioContrato { get; set; }
         public DateTime DtPrevisaoFimContrato { get; set; }
@@ -19,5 +17,6 @@ namespace CBF.Domain.Entities
         public Jogador Jogador { get; set; }
         public Clube ClubeAnterior { get; set; }
         public Clube ClubeNovo { get; set; }
+        public Temporada Temporada { get; set; }
     }
 }
