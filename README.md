@@ -1,16 +1,18 @@
 <h1 align="center">FIAP - Grupo XX - TECH CHALLENGE</h1>
+<br>
 
-A Confederação Brasileira de Futebol (CBF), como parte de sua constante evolução e compromisso com a excelência no gerenciamento de informações relacionadas ao futebol, reconheceu a necessidade de desenvolver uma API (Interface de Programação de Aplicativos) robusta e eficiente. 
-Esta iniciativa visa simplificar e aprimorar a forma como os dados essenciais do futebol brasileiro são acessados, gerenciados e compartilhados.
-Com a crescente complexidade das operações envolvendo jogadores, clubes, transferências, estatísticas e contratos, a CBF reconhece a importância de estabelecer um sistema tecnologicamente avançado que promova a transparência, precisão e acessibilidade aos dados relacionados ao futebol nacional. 
+<p>A Confederação Brasileira de Futebol (CBF), como parte de sua constante evolução e compromisso com a excelência no gerenciamento de informações relacionadas ao futebol, reconheceu a necessidade de desenvolver uma API (Interface de Programação de Aplicativos) robusta e eficiente.</p>
+<p></p>Esta iniciativa visa simplificar e aprimorar a forma como os dados essenciais do futebol brasileiro são acessados, gerenciados e compartilhados.
+Com a crescente complexidade das operações envolvendo jogadores, clubes, transferências, estatísticas e contratos, a CBF reconhece a importância de estabelecer um sistema tecnologicamente avançado que promova a transparência, precisão e acessibilidade aos dados relacionados ao futebol nacional.</p>
 
 <h3 align="center">Requisitos Levantados:</h3>
-- Cadastrar, atualizar e obter dados de Jogadores, transferências, clubes e temporadas.
-- Gerar relatório por ranking de gols, assistâncias e cartões.
-- Gerar relatório paginado de jogadores, clubes e tranferências.
-- As transferências só devem ser permitidas se o jogador estiver cadastrado no sistema.
-- As transferências só devem ser permitidas se os clubes envolvidos estiverem cadastrados no sistema.
-- O acesso ao sistema deve ser restrito a usuários autorizados, como administradores e analistas.
+<li>Cadastrar, atualizar e obter dados de Jogadores, transferências, clubes e temporadas.</li>
+<li>Gerar relatório por ranking de gols, assistâncias e cartões.</li>
+<li>Gerar relatório paginado de jogadores, clubes e tranferências.</li>
+<li>As transferências só devem ser permitidas se o jogador estiver cadastrado no sistema.</li>
+<li>As transferências só devem ser permitidas se os clubes envolvidos estiverem cadastrados no sistema.</li>
+<li>O acesso ao sistema deve ser restrito a usuários autorizados, como administradores e analistas.</li>
+<br>
 
 <h3 align="center">Critérios de Aceite (MVP):</h3>
 
