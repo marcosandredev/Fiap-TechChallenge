@@ -28,6 +28,6 @@ public class UsuarioRequestValidator : AbstractValidator<UsuarioRequest>
             .Must(x => usuarioRepository.ExistAsync(u => u.NomeUsuario == x).Result == false);
 
         RuleFor(x => x.Permissao)
-            .Must(x => Enum.IsDefined(typeof(Permissao), x)); ;
+            .Must(x => Enum.IsDefined(typeof(Permissao), x));
     }
 }

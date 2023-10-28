@@ -8,5 +8,6 @@ public class DtoToModelProfile : Profile
     public DtoToModelProfile()
     {
         CreateMap<UsuarioRequest, Usuario>();
+        CreateMap<TemporadaRequest, Temporada>();
     }
 }
