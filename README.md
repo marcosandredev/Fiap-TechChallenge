@@ -1,7 +1,7 @@
 # Fiap-TechChallenge
 
 Requisitos
-- Cadastrar/Atualizar e Pegar dados de Jogadores, Transferencias e Clubes;
+- Cadastrar/Atualizar e Pegar dados de Jogadores, Transferencias, Clubes e Temporada;
 - Gerar relatório por ranking ranking por gols, assistencias e cartões;
 - Gerar relatório paginado de jogadores, clubes e tranferencias;
 - As transferências só devem ser permitidas se o jogador estiver cadastrado no sistema;
