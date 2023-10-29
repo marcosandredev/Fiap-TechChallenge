@@ -18,6 +18,18 @@ namespace CBF.Domain.Exceptions
         {
 
         }
+    }
 
+    public class AlreadyExistsExceptionClube : Exception
+    {
+        public AlreadyExistsExceptionClube() : base(ExceptionMessage.Clube_Already_Exists)
+        {
+
+        }
+
+        public AlreadyExistsExceptionClube(string message) : base(message)
+        {
+
+        }
     }
 }
