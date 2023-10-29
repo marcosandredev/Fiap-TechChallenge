@@ -8,6 +8,7 @@ public class ModelToDtoProfile : Profile
     public ModelToDtoProfile()
     {
         CreateMap<Usuario, UsuarioResponse>();
+        CreateMap<Jogador, JogadorResponse>();
         CreateMap<Temporada, TemporadaResponse>();
     }
 }
