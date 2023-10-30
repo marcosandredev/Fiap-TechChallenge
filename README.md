@@ -12,6 +12,7 @@ Com a crescente complexidade das operações envolvendo jogadores, clubes, trans
 <li>As transferências só devem ser permitidas se o jogador estiver cadastrado no sistema.</li>
 <li>As transferências só devem ser permitidas se os clubes envolvidos estiverem cadastrados no sistema.</li>
 <li>O acesso ao sistema deve ser restrito a usuários autorizados, como administradores e analistas.</li>
+<li>Para adicionar, atualizar ou excluir, somente com autorização de Administrador.</li>
 <br>
 
 <h3 align="center">Critérios de Aceite (MVP):</h3>
