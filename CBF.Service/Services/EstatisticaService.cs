@@ -33,9 +33,17 @@ namespace CBF.Service.Services
         {
             var estatistica = await _estatisticaJogadorRepository.GetByIdAsync(id) ?? throw new NotFoundException();
 
-            var estatisticaJogador = _mapper.Map<EstatisticaJogador>(estatistica);
+            var estatisticaJogador = _mapper.Map<EstatisticaJogador>(request);
 
-            var model = await _estatisticaJogadorRepository.UpdateAsync(estatisticaJogador);
+            estatistica.Ano = estatisticaJogador.Ano;
+            estatistica.Partidas = estatisticaJogador.Partidas;
+            estatistica.Gols = estatisticaJogador.Gols;
+            estatistica.Assistencias = estatisticaJogador.Assistencias;
+            estatistica.Amarelos = estatisticaJogador.Amarelos;
+            estatistica.Vermelhos = estatisticaJogador.Vermelhos;
+            estatisticaJogador.AtualizadoEm = DateTime.Now;
+
+            var model = await _estatisticaJogadorRepository.UpdateAsync(estatistica);
 
             return _mapper.Map<EstatisticaJogadorResponse>(model);
         }
@@ -44,9 +52,17 @@ namespace CBF.Service.Services
         {
             var estatistica = await _estatisticaJogadorClubeRepository.GetByIdAsync(id) ?? throw new NotFoundException();
 
-            var estatisticaJogador = _mapper.Map<EstatisticaJogadorClube>(estatistica);
+            var estatisticaJogador = _mapper.Map<EstatisticaJogadorClube>(request);
 
-            var model = await _estatisticaJogadorClubeRepository.UpdateAsync(estatisticaJogador);
+            estatistica.Ano = estatisticaJogador.Ano;
+            estatistica.Partidas = estatisticaJogador.Partidas;
+            estatistica.Gols = estatisticaJogador.Gols;
+            estatistica.Assistencias = estatisticaJogador.Assistencias;
+            estatistica.Amarelos = estatisticaJogador.Amarelos;
+            estatistica.Vermelhos = estatisticaJogador.Vermelhos;
+            estatisticaJogador.AtualizadoEm = DateTime.Now;
+
+            var model = await _estatisticaJogadorClubeRepository.UpdateAsync(estatistica);
 
             return _mapper.Map<EstatisticaJogadorClubeResponse>(model);
         }
