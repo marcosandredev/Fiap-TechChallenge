@@ -1,14 +1,11 @@
 ﻿using AutoMapper;
-using Azure.Core;
 using CBF.Domain.DTOs.Request;
 using CBF.Domain.DTOs.Response;
 using CBF.Domain.Entities;
 using CBF.Domain.Exceptions;
-using CBF.Infra.Repositories;
 using CBF.Infra.Repositories.Interfaces;
 using CBF.Service.Services.Interfaces;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore.Storage;
+using Microsoft.EntityFrameworkCore;
 
 namespace CBF.Service.Services;
 public class JogadorService : IJogadorService
@@ -23,8 +20,8 @@ public class JogadorService : IJogadorService
     }
 
     public async Task<JogadorResponse> AtualizarJogadorAsync(long id, JogadorUpdateRequest request)
-    { 
-        var jogador = await _jogadorRepository.GetByIdAsync(id) ?? throw new NotFoundException();
+    {
+        var jogador = await _jogadorRepository.GetByIdAsync(id, x => x.Include(j => j.Clubes.Where(c => c.Id == request.Contrato.Id))) ?? throw new NotFoundException();
 
         var jogadorAtualizado = _mapper.Map<Jogador>(request);
 
@@ -32,6 +29,27 @@ public class JogadorService : IJogadorService
         jogador.Nome = jogadorAtualizado.Nome;
         jogador.PePreferido = jogadorAtualizado.PePreferido;
         jogador.Posicao = jogadorAtualizado.Posicao;
+
+        if (jogador.Clubes is null)
+        {
+            jogador.Clubes = new List<ClubeJogador>()
+            {
+                new ClubeJogador()
+                {
+                    IdClube = request.Contrato.IdClube,
+                    DtInicioContrato = request.Contrato.DtInicioContrato,
+                    DtFimContrato = request.Contrato.DtFimContrato,
+                    Salario = request.Contrato.Salario
+                }
+            };
+        }
+        else
+        {
+            jogador.Clubes.FirstOrDefault().IdClube = request.Contrato.IdClube;
+            jogador.Clubes.FirstOrDefault().Salario = request.Contrato.Salario;
+            jogador.Clubes.FirstOrDefault().DtInicioContrato = request.Contrato.DtInicioContrato;
+            jogador.Clubes.FirstOrDefault().DtFimContrato = request.Contrato.DtFimContrato;
+        }
 
         var model = await _jogadorRepository.UpdateAsync(jogador);
 
@@ -49,10 +67,10 @@ public class JogadorService : IJogadorService
     public async Task<IEnumerable<JogadorResponse>> BuscarJogadoresPorNacionalidadeAsync(string nacionalidade)
     {
         var model = await _jogadorRepository.BuscarJogadoresPorNacionalidadeAsync(nacionalidade);
-        
-       if (model == null || !model.Any())
+
+        if (model == null || !model.Any())
             throw new NotFoundException(ExceptionMessage.Jogadores_Nasc_Not_Found);
-        
+
         return _mapper.Map<IEnumerable<JogadorResponse>>(model);
     }
 
@@ -62,7 +80,19 @@ public class JogadorService : IJogadorService
 
         bool exits = await _jogadorRepository.ExistAsync(j => j.Nome == jogador.Nome && j.DtNascimento == jogador.DtNascimento);
 
-        if (exits) throw new AlreadyExistsException();
+        if (exits)
+            throw new BadRequestException(ExceptionMessage.Jogador_Already_Exists);
+
+        jogador.Clubes = new List<ClubeJogador>()
+        {
+            new ClubeJogador()
+            {
+                IdClube = request.Contrato.IdClube,
+                DtInicioContrato = request.Contrato.DtInicioContrato,
+                DtFimContrato = request.Contrato.DtFimContrato,
+                Salario = request.Contrato.Salario
+            }
+        };
 
         var model = await _jogadorRepository.AddAsync(jogador);
 

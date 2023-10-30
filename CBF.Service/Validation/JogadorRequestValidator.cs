@@ -14,7 +14,7 @@ namespace CBF.Service.Validation
 {
     public class JogadorRequestValidator : AbstractValidator<JogadorRequest>
     {
-        public JogadorRequestValidator() 
+        public JogadorRequestValidator(IClubeRepository clubeRepository) 
         {
 
             RuleFor(j => j.Nome)
@@ -39,6 +39,8 @@ namespace CBF.Service.Validation
         
             RuleFor(j => j.Altura)
                 .NotEmpty().WithMessage("Campo Altura é obrigatório!");
+
+            RuleFor(x => x.ClubeJogador).SetValidator(new ClubeJogadorRequestValidator(clubeRepository));
 
         }
 

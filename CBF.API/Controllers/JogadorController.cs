@@ -20,6 +20,7 @@ namespace CBF.API.Controllers
         }
 
         [HttpPost("Criar-Jogador")]
+        [Authorize(Roles = "Administrador")]
         public async Task<ActionResult> CriarJogador([FromBody] JogadorRequest request)
         {
               var response = await _jogadorService.CadastrarJogadorAsync(request);
@@ -28,6 +29,7 @@ namespace CBF.API.Controllers
         }
 
         [HttpPost("Criar-Jogadores-Em-Massa")]
+        [Authorize(Roles = "Administrador")]
         public async Task<ActionResult> CriarJogadorMassa([FromBody] IList<JogadorRequest> request)
         {
             IList<string> messagem = new List<string>();
@@ -62,6 +64,7 @@ namespace CBF.API.Controllers
         }
 
         [HttpPut("Atualizar-Jogador/{id}")]
+        [Authorize(Roles = "Administrador")]
         public async Task<IActionResult> AtualizarJogador([FromRoute] long id, [FromBody] JogadorUpdateRequest request)
         {
               var jogadorAtualizado = await _jogadorService.AtualizarJogadorAsync(id, request);
