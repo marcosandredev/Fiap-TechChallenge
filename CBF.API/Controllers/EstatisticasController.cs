@@ -4,6 +4,8 @@ using CBF.Domain.Entities;
 using Microsoft.EntityFrameworkCore.SqlServer.Query.Internal;
 using CBF.Domain.DTOs.Request;
 using CBF.Service.Services;
+using Microsoft.AspNetCore.Authorization;
+using System.Data;
 
 namespace CBF.API.Controllers
 {
@@ -22,6 +24,50 @@ namespace CBF.API.Controllers
         }
         #endregion
 
+        #region Excluir Estatísticas Jogador
+        [HttpDelete("Deletar-Estatistica-Jogador/{id}")]
+        [Authorize(Roles = "Administrador")]
+        public async Task<ActionResult> DeletarEstatisticaJogador([FromRoute] long id)
+        {
+            var estatistica = await _estatisticaService.DeletarEstatisticaJogadorAsync(id);
+
+            return Ok("Estastística Jogador deletada da base!");
+
+        }
+        #endregion
+
+        #region Excluir Estatísticas Jogador Clube
+        [HttpDelete("Deletar-Estatistica-Jogador-Clube/{id}")]
+        [Authorize(Roles = "Administrador")]
+        public async Task<ActionResult> DeletarEstatisticaJogadorClube([FromRoute] long id)
+        {
+            var estatistica = await _estatisticaService.DeletarEstatisticaJogadorClubeAsync(id);
+
+            return Ok("Estastística Jogador Clube deletada da base!");
+
+        }
+        #endregion
+
+        #region Atualizar Estatísticas Jogador
+        [HttpPut("Atualizar-Estatistica-Jogador/{id}")]
+        public async Task<IActionResult> AtualizarEstatisticaJogador([FromRoute] long id, [FromBody] EstatisticaJogadorRequest request)
+        {
+            var estatistica = await _estatisticaService.AtualizarEstatisticaJogadorAsync(id, request);
+
+            return Ok(new { Mensagem = "Estatística Atualizada!", estatistica });
+        }
+        #endregion
+
+        #region Atualizar Estatísticas Jogador Clube
+        [HttpPut("Atualizar-Estatistica-Jogador-Clube/{id}")]
+        public async Task<IActionResult> AtualizarEstatisticaJogadorClube([FromRoute] long id, [FromBody] EstatisticaJogadorClubeRequest request)
+        {
+            var estatistica = await _estatisticaService.AtualizarEstatisticaJogadorClubeAsync(id, request);
+
+            return Ok(new { Mensagem = "Estatística Atualizada!", estatistica });
+        }
+        #endregion
+
         #region Incluir Estatísticas Jogador
         [HttpPost("Criar-Estatistica-Jogador")]
         public async Task<ActionResult> CriarEstatisticaJogador([FromBody] EstatisticaJogadorRequest request)
@@ -30,7 +76,6 @@ namespace CBF.API.Controllers
 
             return Ok(response);
         }
-
         #endregion
 
         #region Incluir Estatísticas Jogador Clube

@@ -12,6 +12,14 @@ namespace CBF.Service.Services.Interfaces
     {
         Task<EstatisticaJogadorResponse> CadastrarEstatisticaJogadorAsync(EstatisticaJogadorRequest request);
 
+        Task<EstatisticaJogadorResponse> AtualizarEstatisticaJogadorAsync(long id, EstatisticaJogadorRequest request);
+
+        Task<EstatisticaJogadorClubeResponse> AtualizarEstatisticaJogadorClubeAsync(long id, EstatisticaJogadorClubeRequest request);
+
+        Task<EstatisticaJogadorResponse> DeletarEstatisticaJogadorAsync(long id);
+
+        Task<EstatisticaJogadorClubeResponse> DeletarEstatisticaJogadorClubeAsync(long id);
+
         Task<EstatisticaJogadorClubeResponse> CadastrarEstatisticaJogadorClubeAsync(EstatisticaJogadorClubeRequest request);
 
         Task<IEnumerable<EstatisticaResponse>> GetJogadoresGolsAsync(long idTemporada);

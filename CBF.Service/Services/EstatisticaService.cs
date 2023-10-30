@@ -29,6 +29,28 @@ namespace CBF.Service.Services
             _mapper = mapper;
         }
 
+        public async Task<EstatisticaJogadorResponse> AtualizarEstatisticaJogadorAsync(long id, EstatisticaJogadorRequest request)
+        {
+            var estatistica = await _estatisticaJogadorRepository.GetByIdAsync(id) ?? throw new NotFoundException();
+
+            var estatisticaJogador = _mapper.Map<EstatisticaJogador>(estatistica);
+
+            var model = await _estatisticaJogadorRepository.UpdateAsync(estatisticaJogador);
+
+            return _mapper.Map<EstatisticaJogadorResponse>(model);
+        }
+
+        public async Task<EstatisticaJogadorClubeResponse> AtualizarEstatisticaJogadorClubeAsync(long id, EstatisticaJogadorClubeRequest request)
+        {
+            var estatistica = await _estatisticaJogadorClubeRepository.GetByIdAsync(id) ?? throw new NotFoundException();
+
+            var estatisticaJogador = _mapper.Map<EstatisticaJogadorClube>(estatistica);
+
+            var model = await _estatisticaJogadorClubeRepository.UpdateAsync(estatisticaJogador);
+
+            return _mapper.Map<EstatisticaJogadorClubeResponse>(model);
+        }
+
         public async Task<EstatisticaJogadorResponse> CadastrarEstatisticaAsync(EstatisticaJogadorRequest request)
         {
             var estatistica = _mapper.Map<EstatisticaJogador>(request);
@@ -55,6 +77,24 @@ namespace CBF.Service.Services
             var model = await _estatisticaJogadorClubeRepository.AddAsync(estatistica);
 
             return _mapper.Map<EstatisticaJogadorClubeResponse>(model);
+        }
+
+        public async Task<EstatisticaJogadorResponse> DeletarEstatisticaJogadorAsync(long id)
+        {
+            var estatistica = await _estatisticaJogadorRepository.GetByIdAsync(id) ?? throw new NotFoundException();
+
+            await _estatisticaJogadorRepository.DeleteAsync(estatistica);
+
+            return _mapper.Map<EstatisticaJogadorResponse>(estatistica);
+        }
+
+        public async Task<EstatisticaJogadorClubeResponse> DeletarEstatisticaJogadorClubeAsync(long id)
+        {
+            var estatistica = await _estatisticaJogadorClubeRepository.GetByIdAsync(id) ?? throw new NotFoundException();
+
+            await _estatisticaJogadorClubeRepository.DeleteAsync(estatistica);
+
+            return _mapper.Map<EstatisticaJogadorClubeResponse>(estatistica);
         }
 
         public async Task<IEnumerable<EstatisticaClubeResponse>> GetEstatisticasClubesTemporada(EstatisticasClubesRequest request)
