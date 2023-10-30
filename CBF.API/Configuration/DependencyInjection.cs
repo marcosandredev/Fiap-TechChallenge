@@ -64,7 +64,7 @@ public static class DependencyInjection
 
         services.AddSwaggerGen(c =>
         {
-            c.SwaggerDoc("v1", new OpenApiInfo { Title = "P2P", Version = "v1" });
+            c.SwaggerDoc("v1", new OpenApiInfo { Title = "CBF.API", Version = "v1" });
 
             c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
             {
@@ -116,6 +116,7 @@ public static class DependencyInjection
                     IssuerSigningKey = new SymmetricSecurityKey(key),
                     ValidateIssuer = false,
                     ValidateAudience = false,
+
                 };
 
             });

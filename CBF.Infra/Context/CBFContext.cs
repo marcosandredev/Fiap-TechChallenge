@@ -41,7 +41,6 @@ public class CBFContext : DbContext
             switch (entry.State)
             {
                 case EntityState.Added:
-                    entry.Entity.Ativo = true;
                     entry.Entity.CriadoEm = entry.Entity.AtualizadoEm = DateTime.Now;
                     break;
                 case EntityState.Modified:

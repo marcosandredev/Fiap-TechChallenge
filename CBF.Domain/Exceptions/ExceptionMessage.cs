@@ -9,4 +9,5 @@ public static class ExceptionMessage
     public static string Clubes_Not_Found = "Não encontrado clubes para o nome informado";
     public static string Jogador_Already_Exists = "Jogador já cadastrado";
     public static string Clube_Already_Exists = "Clube já cadastrado";
+    public static string Season_Already_Exist = "Já existe uma temporada no período selecionado";
 }

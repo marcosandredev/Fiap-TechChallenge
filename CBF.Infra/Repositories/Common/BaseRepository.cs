@@ -48,7 +48,7 @@ public class BaseRepository<T> : IBaseRepository<T> where T : EntityBase
     }
 
     public virtual async Task<IEnumerable<T>> GetAllAsync(Expression<Func<T, bool>> filter = null,
-            Func<IQueryable<T>, IIncludableQueryable<T, object>> include = null, bool asNoTracking = false)
+            Func<IQueryable<T>, IIncludableQueryable<T, object>> include = null, bool asNoTracking = true)
     {
         var query = _dbSet.AsQueryable();
 
