@@ -1,20 +1,21 @@
 ﻿using CBF.Domain.DTOs.Request;
-using CBF.Domain.Entities.Enums;
+using CBF.Infra.Repositories.Interfaces;
 using FluentValidation;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CBF.Service.Validation
 {
     public class EstatisticaJogadorRequestValidator : AbstractValidator<EstatisticaJogadorRequest>
     {
-        public EstatisticaJogadorRequestValidator()
+        public EstatisticaJogadorRequestValidator(IJogadorRepository jogadorRepository, ITemporadaRepository temporadaRepository)
         {
-            RuleFor(e => e.IdJogador).NotEmpty().WithMessage("O campo IdJogador é obrigatório.");
-            RuleFor(e => e.IdTemporada).NotEmpty().WithMessage("O campo IdTemporada é obrigatório.");
+            RuleFor(e => e.IdJogador).NotEmpty().WithMessage("O campo IdJogador é obrigatório.")
+                .Must(x => jogadorRepository.ExistAsync(j => j.Id == x).Result)
+                .WithMessage("Jogador não cadastrado.");
+
+            RuleFor(e => e.IdTemporada).NotEmpty().WithMessage("O campo IdTemporada é obrigatório.")
+                .Must(x => temporadaRepository.ExistAsync(t => t.Id == x).Result)
+                .WithMessage("Temporada não cadastrada.");
+
             RuleFor(e => e.Ano).NotEmpty().WithMessage("O campo Ano é obrigatório.");
             RuleFor(e => e.Partidas).NotEmpty().WithMessage("O campo Partidas é obrigatório.");
             RuleFor(e => e.Gols).NotEmpty().WithMessage("O campo Gols é obrigatório.");
