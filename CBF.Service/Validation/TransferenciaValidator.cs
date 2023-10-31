@@ -35,22 +35,20 @@ namespace CBF.Service.Validation
                .WithMessage("Temporada não cadastrada");
 
             RuleFor(j => j.TipoTransferencia)
-               .Must(j => Enum.IsDefined(typeof(TipoTransferencia), j)).WithMessage("Campo posicao deve ser escolhido de 1 a 6");
+               .Must(j => Enum.IsDefined(typeof(TipoTransferencia), j))
+               .WithMessage("Campo posicao deve ser escolhido de 1 a 6");
 
             RuleFor(model => model.DtTransferencia)
-                .NotEmpty().WithMessage("O campo de data é obrigatório.")
-                .Must(x => x.Date == x)
-                .WithMessage("O campo de data deve conter uma data válida.");
+                .NotEmpty()
+                .WithMessage("O campo de data é obrigatório.");
 
             RuleFor(x => x.DtInicioContrato)
-                .NotEmpty().WithMessage("O campo de Data Início Contrato é obrigatório.")
-                .Must(x => x.Date == x)
-                .WithMessage("O campo de data deve conter uma data válida.");
+                .NotEmpty()
+                .WithMessage("O campo de Data Início Contrato é obrigatório.");
 
             RuleFor(x => x.DtPrevisaoFimContrato)
-                .NotEmpty().WithMessage("O campo de Data Previsão Fim Contrato é obrigatório.")
-                .Must(x => x.Date == x)
-                .WithMessage("O campo de data deve conter uma data válida.");
+                .NotEmpty()
+                .WithMessage("O campo de Data Previsão Fim Contrato é obrigatório.");
         }
     }
 }
