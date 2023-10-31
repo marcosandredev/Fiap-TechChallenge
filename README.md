@@ -1,4 +1,4 @@
-<h1 align="center">FIAP - Grupo XX - TECH CHALLENGE</h1>
+<h1 align="center">FIAP - CBF.API - TECH CHALLENGE</h1>
 <br>
 
 <h3 align="center">Integrantes do Grupo:</h3>
