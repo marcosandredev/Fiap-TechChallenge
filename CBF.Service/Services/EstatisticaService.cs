@@ -33,15 +33,7 @@ namespace CBF.Service.Services
         {
             var estatistica = await _estatisticaJogadorRepository.GetByIdAsync(id) ?? throw new NotFoundException();
 
-            var estatisticaJogador = _mapper.Map<EstatisticaJogador>(request);
-
-            estatistica.Ano = estatisticaJogador.Ano;
-            estatistica.Partidas = estatisticaJogador.Partidas;
-            estatistica.Gols = estatisticaJogador.Gols;
-            estatistica.Assistencias = estatisticaJogador.Assistencias;
-            estatistica.Amarelos = estatisticaJogador.Amarelos;
-            estatistica.Vermelhos = estatisticaJogador.Vermelhos;
-            estatisticaJogador.AtualizadoEm = DateTime.Now;
+            _mapper.Map(request, estatistica);
 
             var model = await _estatisticaJogadorRepository.UpdateAsync(estatistica);
 
@@ -52,15 +44,7 @@ namespace CBF.Service.Services
         {
             var estatistica = await _estatisticaJogadorClubeRepository.GetByIdAsync(id) ?? throw new NotFoundException();
 
-            var estatisticaJogador = _mapper.Map<EstatisticaJogadorClube>(request);
-
-            estatistica.Ano = estatisticaJogador.Ano;
-            estatistica.Partidas = estatisticaJogador.Partidas;
-            estatistica.Gols = estatisticaJogador.Gols;
-            estatistica.Assistencias = estatisticaJogador.Assistencias;
-            estatistica.Amarelos = estatisticaJogador.Amarelos;
-            estatistica.Vermelhos = estatisticaJogador.Vermelhos;
-            estatisticaJogador.AtualizadoEm = DateTime.Now;
+            _mapper.Map(request, estatistica);
 
             var model = await _estatisticaJogadorClubeRepository.UpdateAsync(estatistica);
 

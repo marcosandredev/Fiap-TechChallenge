@@ -23,12 +23,7 @@ public class JogadorService : IJogadorService
     {
         var jogador = await _jogadorRepository.GetByIdAsync(id, x => x.Include(j => j.Clubes.Where(c => c.Id == request.Contrato.Id))) ?? throw new NotFoundException();
 
-        var jogadorAtualizado = _mapper.Map<Jogador>(request);
-
-        jogador.Peso = jogadorAtualizado.Peso;
-        jogador.Nome = jogadorAtualizado.Nome;
-        jogador.PePreferido = jogadorAtualizado.PePreferido;
-        jogador.Posicao = jogadorAtualizado.Posicao;
+        _mapper.Map(request, jogador);
 
         if (jogador.Clubes.Count == 0)
         {

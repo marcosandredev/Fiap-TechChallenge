@@ -20,7 +20,7 @@ namespace CBF.API.Controllers
         [Authorize(Roles = "Administrador")]
         public async Task<ActionResult> DeletarEstatisticaJogador([FromRoute] long id)
         {
-            var estatistica = await _estatisticaService.DeletarEstatisticaJogadorAsync(id);
+            await _estatisticaService.DeletarEstatisticaJogadorAsync(id);
 
             return Ok("Estastística Jogador deletada da base!");
         }
@@ -29,7 +29,7 @@ namespace CBF.API.Controllers
         [Authorize(Roles = "Administrador")]
         public async Task<ActionResult> DeletarEstatisticaJogadorClube([FromRoute] long id)
         {
-            var estatistica = await _estatisticaService.DeletarEstatisticaJogadorClubeAsync(id);
+            await _estatisticaService.DeletarEstatisticaJogadorClubeAsync(id);
 
             return Ok("Estastística Jogador Clube deletada da base!");
         }
@@ -103,7 +103,7 @@ namespace CBF.API.Controllers
         [HttpGet("Buscar-Jogadores-Partidas-Temporada/{idTemporada}")]
         public async Task<IActionResult> GetJogadoresPartidasTemporada([FromRoute] long idTemporada)
         {
-            var result = await _estatisticaService.GetJogadoresAssistenciasAsync(idTemporada);
+            var result = await _estatisticaService.GetJogadoresPartidasAsync(idTemporada);
 
             return Ok(result);
         }

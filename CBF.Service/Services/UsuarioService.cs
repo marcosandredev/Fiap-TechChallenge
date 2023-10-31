@@ -12,13 +12,11 @@ namespace CBF.Service.Services;
 public class UsuarioService : IUsuarioService
 {
     private readonly IUsuarioRepository _usuarioRepository;
-    private readonly ITokenService _tokenService;
     private readonly IMapper _mapper;
 
-    public UsuarioService(IUsuarioRepository usuarioRepository, ITokenService tokenService, IMapper mapper)
+    public UsuarioService(IUsuarioRepository usuarioRepository, IMapper mapper)
     {
         _usuarioRepository = usuarioRepository;
-        _tokenService = tokenService;
         _mapper = mapper;
     }
 
