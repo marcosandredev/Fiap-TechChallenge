@@ -3,10 +3,8 @@ using CBF.Domain.DTOs.Request;
 using CBF.Domain.DTOs.Response;
 using CBF.Domain.Entities;
 using CBF.Domain.Exceptions;
-using CBF.Infra.Repositories;
 using CBF.Infra.Repositories.Interfaces;
 using CBF.Service.Services.Interfaces;
-using System.Data;
 
 namespace CBF.Service.Services;
 public class TranferenciaService : ITransferenciaService
@@ -15,17 +13,15 @@ public class TranferenciaService : ITransferenciaService
 
     private readonly IMapper _mapper;
 
-    public TranferenciaService(ITransferenciaRepository transfRepository)
+    public TranferenciaService(ITransferenciaRepository transfRepository, IMapper mapper)
     {
         _transfRepository = transfRepository;
+        _mapper = mapper;
     }
 
     public async Task<IEnumerable<TransferenciaResponse>> BuscarTransferenciaPorIdClube(long id)
     {
-        var transferencias = await _transfRepository.BuscarTransferenciasPorIdClube(id);
-
-        if (!transferencias.Any() || transferencias == null)
-            throw new NotFoundException("Transferências não encontradas!");
+        var transferencias = await _transfRepository.BuscarTransferenciasPorIdClube(id) ?? throw new NotFoundException("Transferências não encontradas!");
 
         return _mapper.Map<IEnumerable<TransferenciaResponse>>(transferencias);
     }
@@ -59,7 +55,7 @@ public class TranferenciaService : ITransferenciaService
     {
         var transferencia = await _transfRepository.GetByIdAsync(id) ?? throw new NotFoundException();
 
-        _mapper.Map(transferencia,request);
+        _mapper.Map(request, transferencia);
 
         var model = await _transfRepository.UpdateAsync(transferencia);
 
