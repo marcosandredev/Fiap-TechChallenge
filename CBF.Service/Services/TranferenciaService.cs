@@ -21,7 +21,7 @@ public class TranferenciaService : ITransferenciaService
 
     public async Task<IEnumerable<TransferenciaResponse>> BuscarTransferenciaPorIdClube(long id)
     {
-        var transferencias = await _transfRepository.BuscarTransferenciasPorIdClube(id) ?? throw new NotFoundException("Transferências não encontradas!");
+        var transferencias = await _transfRepository.BuscarTransferenciasPorIdClube(id) ?? throw new NotFoundException();
 
         return _mapper.Map<IEnumerable<TransferenciaResponse>>(transferencias);
     }
