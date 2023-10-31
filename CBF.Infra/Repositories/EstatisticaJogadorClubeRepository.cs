@@ -8,5 +8,6 @@ public class EstatisticaJogadorClubeRepository : BaseRepository<EstatisticaJogad
 {
     public EstatisticaJogadorClubeRepository(CBFContext context) : base(context)
     {
+
     }
 }
