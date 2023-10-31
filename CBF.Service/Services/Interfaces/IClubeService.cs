@@ -10,7 +10,8 @@ public interface IClubeService
 
     Task<ClubeResponse> CadastrarClubeAsync(ClubeRequest request);
 
-    Task<ClubeResponse> AtualizarClubeAsync(long id, ClubeUpdateRequest request);
+    Task<ClubeResponse> AtualizarClubeAsync(long id, ClubeRequest request);
 
     Task<ClubeResponse> DeletarClubeAsync(long id);
+    Task<ClubeResponse> BuscarClubeComJogadoresAsync(long id);
 }

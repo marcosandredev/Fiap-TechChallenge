@@ -27,6 +27,13 @@ namespace CBF.API.Controllers
             return Ok(clubes);
         }
 
+        [HttpGet("Buscar-Clube-Com-Jogadores/{id}")]
+        public async Task<IActionResult> BuscarClubes([FromRoute] long id)
+        {
+            var clube = await _clubeService.BuscarClubeComJogadoresAsync(id);
+            return Ok(clube);
+        }
+
         [HttpGet("Buscar-Clubes-Por-Id/{id}")]
         public async Task<IActionResult> BuscarClubesPorId([FromRoute] long id) 
         {
@@ -34,6 +41,7 @@ namespace CBF.API.Controllers
             return Ok(clube);
         }
 
+        [Authorize(Roles = "Administrador")]
         [HttpPost("Cadastrar-Clube")]
         public async Task<ActionResult> CadastrarClube([FromBody] ClubeRequest request) 
         {
@@ -42,8 +50,9 @@ namespace CBF.API.Controllers
             return Ok(response);
         }
 
+        [Authorize(Roles = "Administrador")]
         [HttpPut("Atualizar-Clube-Por-Id/{id}")]
-        public async Task<IActionResult> AtualizarClubePorId([FromRoute] long id, [FromBody] ClubeUpdateRequest request) 
+        public async Task<IActionResult> AtualizarClubePorId([FromRoute] long id, [FromBody] ClubeRequest request) 
         {
               var clubeAtualizado = await _clubeService.AtualizarClubeAsync(id, request);
               
