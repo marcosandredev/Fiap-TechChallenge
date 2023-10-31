@@ -32,7 +32,6 @@ namespace CBF.API.Controllers
             var estatistica = await _estatisticaService.DeletarEstatisticaJogadorAsync(id);
 
             return Ok("Estastística Jogador deletada da base!");
-
         }
         #endregion
 
@@ -44,7 +43,6 @@ namespace CBF.API.Controllers
             var estatistica = await _estatisticaService.DeletarEstatisticaJogadorClubeAsync(id);
 
             return Ok("Estastística Jogador Clube deletada da base!");
-
         }
         #endregion
 
@@ -181,7 +179,7 @@ namespace CBF.API.Controllers
         #region Jogadores Partidas Temporada
 
         [HttpGet("Buscar-Jogadores-Partidas-Temporada/{idTemporada}")]
-        public async Task<IActionResult> GetJogadoresPartidasTempoarada([FromRoute] long idTemporada)
+        public async Task<IActionResult> GetJogadoresPartidasTemporada([FromRoute] long idTemporada)
         {
             try
             {
