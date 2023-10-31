@@ -4,4 +4,5 @@ using CBF.Domain.Entities;
 namespace CBF.Infra.Repositories.Interfaces;
 public interface ITransferenciaRepository : IBaseRepository<Transferencias>
 {
+    Task<IEnumerable<Transferencias>> BuscarTransferenciasPorIdClube(long id);
 }
