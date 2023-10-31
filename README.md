@@ -1,9 +1,23 @@
 <h1 align="center">FIAP - Grupo XX - TECH CHALLENGE</h1>
 <br>
 
+<h3 align="center">Integrantes do Grupo:</h3>
+<br>
+- Bruno Moura     - RM 350846
+- Igor Broetto    - RM 351931
+- Marcos André    - RM 351923
+- Tiago Vazzoller - RM 351733
+- Victor Hugo     - RM 351315
+<br>
+
 <p>A Confederação Brasileira de Futebol (CBF), como parte de sua constante evolução e compromisso com a excelência no gerenciamento de informações relacionadas ao futebol, reconheceu a necessidade de desenvolver uma API (Interface de Programação de Aplicativos) robusta e eficiente.</p>
 <p></p>Esta iniciativa visa simplificar e aprimorar a forma como os dados essenciais do futebol brasileiro são acessados, gerenciados e compartilhados.
 Com a crescente complexidade das operações envolvendo jogadores, clubes, transferências, estatísticas e contratos, a CBF reconhece a importância de estabelecer um sistema tecnologicamente avançado que promova a transparência, precisão e acessibilidade aos dados relacionados ao futebol nacional.</p>
+
+<h3 align="center">Critérios de utilização:</h3>
+<li>Para criação de usuário, utilizar a rota de api/usuário/create</li>
+<li>Métodos Delete, Post ou Put, apenas deverão ser utilizados por Admnistrador</li>
+<br>
 
 <h3 align="center">Requisitos Levantados:</h3>
 <li>Cadastrar, atualizar e obter dados de Jogadores, transferências, clubes e temporadas.</li>
@@ -58,6 +72,4 @@ Com a crescente complexidade das operações envolvendo jogadores, clubes, trans
 <br>
 <p>ou via Docker:</p>
  <pre> docker run -e "ACCEPT_EULA=Y" -e "MSSQL_SA_PASSWORD=yourStrong(!)Password" -p 1433:1433 -d mcr.microsoft.com/mssql/server:2022-latest</pre>
-
-
 
