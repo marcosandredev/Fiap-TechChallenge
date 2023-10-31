@@ -5,4 +5,7 @@ namespace CBF.Service.Services.Interfaces;
 public interface ITransferenciaService
 {
     Task<TransferenciaResponse> CriarTransferenciaAsync(TransferenciaRequest request);
+    Task<TransferenciaResponse> BuscarTransferenciaPorId(long id);
+    Task<TransferenciaResponse> DeletarTransferencia(long id);
+    Task<IEnumerable<TransferenciaResponse>> BuscarTransferenciaPorIdClube(long id);
 }
