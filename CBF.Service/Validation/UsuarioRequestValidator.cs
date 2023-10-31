@@ -12,7 +12,7 @@ public class UsuarioRequestValidator : AbstractValidator<UsuarioRequest>
             .MaximumLength(80)
             .EmailAddress()
             .NotEmpty()
-            .Must(x => usuarioRepository.ExistAsync(u => u.Email == x).Result == false);
+            .Must(x => usuarioRepository.ExistAsync(u => u.Email == x).Result);
 
         RuleFor(x => x.Nome)
             .MaximumLength(100)
@@ -25,7 +25,7 @@ public class UsuarioRequestValidator : AbstractValidator<UsuarioRequest>
         RuleFor(x => x.NomeUsuario)
             .Length(6, 30)
             .NotEmpty()
-            .Must(x => usuarioRepository.ExistAsync(u => u.NomeUsuario == x).Result == false);
+            .Must(x => usuarioRepository.ExistAsync(u => u.NomeUsuario == x).Result);
 
         RuleFor(x => x.Permissao)
             .Must(x => Enum.IsDefined(typeof(Permissao), x));

@@ -8,6 +8,7 @@ public interface IJogadorService
     Task<JogadorResponse> DeletarJogadorAsync(long id);
     Task<JogadorResponse> AtualizarJogadorAsync(long id, JogadorUpdateRequest request);
     Task<JogadorResponse> BuscaJogadorPorIdAsync(long id);
+    Task<IEnumerable<JogadorResponse>> BuscaJogadoresAsync();
     Task<IEnumerable<JogadorResponse>> BuscarJogadoresPorNacionalidadeAsync(string nacionalidade);
 
 

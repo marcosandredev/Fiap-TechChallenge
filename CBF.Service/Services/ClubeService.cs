@@ -5,6 +5,7 @@ using CBF.Domain.Entities;
 using CBF.Domain.Exceptions;
 using CBF.Infra.Repositories.Interfaces;
 using CBF.Service.Services.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace CBF.Service.Services;
 public class ClubeService : IClubeService
@@ -19,7 +20,7 @@ public class ClubeService : IClubeService
         _mapper = mapper;
     }
 
-    public async Task<ClubeResponse> AtualizarClubeAsync(long id, ClubeUpdateRequest request)
+    public async Task<ClubeResponse> AtualizarClubeAsync(long id, ClubeRequest request)
     {
         var clube = await _clubeRepository.GetByIdAsync(id) ?? throw new NotFoundException();
 
@@ -53,9 +54,9 @@ public class ClubeService : IClubeService
     {
         var clube = _mapper.Map<Clube>(request);
 
-        bool exits = await _clubeRepository.ExistAsync(c => c.Nome == clube.Nome && c.DtFundacao == clube.DtFundacao);
+        var exist = await _clubeRepository.ExistAsync(c => c.Nome == clube.Nome && c.DtFundacao == clube.DtFundacao);
 
-        if (exits) throw new AlreadyExistsExceptionClube();
+        if (exist) throw new AlreadyExistsExceptionClube();
 
         var model = await _clubeRepository.AddAsync(clube);
 
@@ -69,5 +70,23 @@ public class ClubeService : IClubeService
         await _clubeRepository.DeleteAsync(clube);
 
         return _mapper.Map<ClubeResponse>(clube);
+    }
+
+    public async Task<ClubeResponse> BuscarClubeComJogadoresAsync(long id)
+    {
+        var clube = await _clubeRepository.GetByIdAsync(id, x => x.Include(c => c.ClubesJogadores).ThenInclude(cj => cj.Jogador)) ?? throw new NotFoundException();
+
+        var clubeResponse = new ClubeResponse()
+        {
+            ID = clube.Id,
+            Cidade = clube.Cidade,
+            Estado = clube.Estado,
+            Pais = clube.Pais,
+            Nome = clube.Nome,
+            DTFundacao = clube.DtFundacao,
+            Jogadores = clube.ClubesJogadores.Select(x => _mapper.Map<JogadorResponse>(x.Jogador))
+        };
+
+        return clubeResponse;
     }
 }

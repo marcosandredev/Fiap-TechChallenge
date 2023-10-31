@@ -6,7 +6,6 @@ using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Scrutor;
@@ -97,7 +96,7 @@ public static class DependencyInjection
 
         return services;
     }
-        //adicionado
+
     public static IServiceCollection AddAuthorization(this IServiceCollection services, IConfiguration configuration)
     {
             var key = Encoding.ASCII.GetBytes(configuration.GetValue<string>("Secret"));

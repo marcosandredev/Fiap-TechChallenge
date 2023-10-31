@@ -1,13 +1,4 @@
-﻿using CBF.Domain.Entities.Enums;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace CBF.Domain.DTOs.Request
+﻿namespace CBF.Domain.DTOs.Request
 {
     public class JogadorRequest
     {
@@ -18,7 +9,7 @@ namespace CBF.Domain.DTOs.Request
         public int PePreferido { get; set; }
         public double Peso { get; set; }
         public double Altura { get; set; }
+        public ClubeJogadorRequest Contrato { get; set; }
 
-      
     }
 }

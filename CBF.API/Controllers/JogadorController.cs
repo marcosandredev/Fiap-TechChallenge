@@ -1,10 +1,8 @@
-﻿using Azure;
-using CBF.Domain.DTOs.Request;
+﻿using CBF.Domain.DTOs.Request;
 using CBF.Domain.DTOs.Response;
 using CBF.Service.Services.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System.Data;
 
 namespace CBF.API.Controllers
 {
@@ -20,14 +18,16 @@ namespace CBF.API.Controllers
         }
 
         [HttpPost("Criar-Jogador")]
+        [Authorize(Roles = "Administrador")]
         public async Task<ActionResult> CriarJogador([FromBody] JogadorRequest request)
         {
-              var response = await _jogadorService.CadastrarJogadorAsync(request);
-              
-              return Ok(response);
+            var response = await _jogadorService.CadastrarJogadorAsync(request);
+
+            return Ok(response);
         }
 
         [HttpPost("Criar-Jogadores-Em-Massa")]
+        [Authorize(Roles = "Administrador")]
         public async Task<ActionResult> CriarJogadorMassa([FromBody] IList<JogadorRequest> request)
         {
             IList<string> messagem = new List<string>();
@@ -48,39 +48,47 @@ namespace CBF.API.Controllers
                 }
             }
 
-            return Ok(new {Mensagem = "Status cadastro:", messagem });
+            return Ok(new { Mensagem = "Status cadastro:", messagem });
         }
 
         [HttpDelete("Deletar-Jogador/{id}")]
         [Authorize(Roles = "Administrador")]
         public async Task<ActionResult> DeletarJogador([FromRoute] long id)
         {
-              var jogador = await _jogadorService.DeletarJogadorAsync(id);
+            var jogador = await _jogadorService.DeletarJogadorAsync(id);
 
-              return Ok($"Jogador {jogador.Nome} foi deletado da base!");
+            return Ok($"Jogador {jogador.Nome} foi deletado da base!");
 
         }
 
         [HttpPut("Atualizar-Jogador/{id}")]
+        [Authorize(Roles = "Administrador")]
         public async Task<IActionResult> AtualizarJogador([FromRoute] long id, [FromBody] JogadorUpdateRequest request)
         {
-              var jogadorAtualizado = await _jogadorService.AtualizarJogadorAsync(id, request);
-              
-              return Ok(new { Mensagem = "Jogador Atualizado!", jogadorAtualizado });
+            var jogadorAtualizado = await _jogadorService.AtualizarJogadorAsync(id, request);
+
+            return Ok(new { Mensagem = "Jogador Atualizado!", jogadorAtualizado });
         }
 
         [HttpGet("Buscar-Jogador-Por-Id/{id}")]
         public async Task<IActionResult> BuscarJogadorPorId([FromRoute] long id)
         {
-                var jogador = await _jogadorService.BuscaJogadorPorIdAsync(id);
-                return Ok(jogador);
+            var jogador = await _jogadorService.BuscaJogadorPorIdAsync(id);
+            return Ok(jogador);
         }
 
         [HttpGet("Buscar-Jogador-Por-Nacionalidade/{nacionalidade}")]
         public async Task<IActionResult> BuscarJogadoresPorNacionalidade(string nacionalidade)
         {
-              var jogadores = await _jogadorService.BuscarJogadoresPorNacionalidadeAsync(nacionalidade);
-              return Ok(jogadores);
+            var jogadores = await _jogadorService.BuscarJogadoresPorNacionalidadeAsync(nacionalidade);
+            return Ok(jogadores);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> BuscarJogadores()
+        {
+            var jogadores = await _jogadorService.BuscaJogadoresAsync();
+            return Ok(jogadores);
         }
     }
 }
