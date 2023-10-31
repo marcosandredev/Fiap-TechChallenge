@@ -3,14 +3,8 @@ using CBF.Domain.DTOs.Request;
 using CBF.Domain.DTOs.Response;
 using CBF.Domain.Entities;
 using CBF.Domain.Exceptions;
-using CBF.Infra.Repositories;
 using CBF.Infra.Repositories.Interfaces;
 using CBF.Service.Services.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CBF.Service.Services
 {
@@ -49,15 +43,6 @@ namespace CBF.Service.Services
             var model = await _estatisticaJogadorClubeRepository.UpdateAsync(estatistica);
 
             return _mapper.Map<EstatisticaJogadorClubeResponse>(model);
-        }
-
-        public async Task<EstatisticaJogadorResponse> CadastrarEstatisticaAsync(EstatisticaJogadorRequest request)
-        {
-            var estatistica = _mapper.Map<EstatisticaJogador>(request);
-
-            var model = await _estatisticaJogadorRepository.AddAsync(estatistica);
-
-            return _mapper.Map<EstatisticaJogadorResponse>(model);
         }
 
         public async Task<EstatisticaJogadorResponse> CadastrarEstatisticaJogadorAsync(EstatisticaJogadorRequest request)
