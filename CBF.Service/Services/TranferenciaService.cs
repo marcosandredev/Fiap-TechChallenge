@@ -3,6 +3,7 @@ using CBF.Domain.DTOs.Request;
 using CBF.Domain.DTOs.Response;
 using CBF.Domain.Entities;
 using CBF.Domain.Exceptions;
+using CBF.Infra.Repositories;
 using CBF.Infra.Repositories.Interfaces;
 using CBF.Service.Services.Interfaces;
 using System.Data;
@@ -31,7 +32,7 @@ public class TranferenciaService : ITransferenciaService
 
     public async Task<TransferenciaResponse> BuscarTransferenciaPorId(long id)
     {
-        var response = await _transfRepository.GetByIdAsync(id) ?? throw new NotFiniteNumberException();
+        var response = await _transfRepository.GetByIdAsync(id) ?? throw new NotFoundException();
 
         return _mapper.Map<TransferenciaResponse>(response);
     }
@@ -52,5 +53,16 @@ public class TranferenciaService : ITransferenciaService
         await _transfRepository.DeleteAsync(transferencia);
 
         return _mapper.Map<TransferenciaResponse>(transferencia);
+    }
+
+    public async Task<TransferenciaResponse> AtualizarTransferenciaAsync(long id, TransferenciaRequest request)
+    {
+        var transferencia = await _transfRepository.GetByIdAsync(id) ?? throw new NotFoundException();
+
+        _mapper.Map(transferencia,request);
+
+        var model = await _transfRepository.UpdateAsync(transferencia);
+
+        return _mapper.Map<TransferenciaResponse>(model);
     }
 }

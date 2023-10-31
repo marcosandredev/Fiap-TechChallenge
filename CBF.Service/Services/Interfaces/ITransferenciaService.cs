@@ -8,4 +8,5 @@ public interface ITransferenciaService
     Task<TransferenciaResponse> BuscarTransferenciaPorId(long id);
     Task<TransferenciaResponse> DeletarTransferencia(long id);
     Task<IEnumerable<TransferenciaResponse>> BuscarTransferenciaPorIdClube(long id);
+    Task<TransferenciaResponse> AtualizarTransferenciaAsync(long id, TransferenciaRequest request);
 }

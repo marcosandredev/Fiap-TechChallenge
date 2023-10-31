@@ -1,4 +1,5 @@
 ﻿using CBF.Domain.DTOs.Request;
+using CBF.Service.Services;
 using CBF.Service.Services.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -43,6 +44,14 @@ namespace CBF.API.Controllers
         {
             var response = await _transferenciaService.BuscarTransferenciaPorIdClube(id);
             return Ok(response);
+        }
+
+        [HttpPut("Atualizar-Transferencia/{id}")]
+        public async Task<IActionResult> AtualizarTransferencia([FromRoute] long id, [FromBody] TransferenciaRequest request)
+        {
+            var transferenciaAtualizada = await _transferenciaService.AtualizarTransferenciaAsync(id, request);
+
+            return Ok(new { Mensagem = "Transferência Atualizada!", transferenciaAtualizada });
         }
     }
 }
