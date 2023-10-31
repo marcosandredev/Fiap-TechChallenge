@@ -36,7 +36,6 @@ Com a crescente complexidade das operações envolvendo jogadores, clubes, trans
 	<p>Jogadores que estiverem aposentados, não podem ser utilizados no sistema e devem ter uma sinalização para essa situação.  ( Flag no banco de dados como falso)</p>
  	<br>
 - Transferências
-	<p>As transferências só podem ser por venda, empréstimo, retorno de empréstimo, troca, fim de contrato ou recisão e estarem vinculadas a uma temporada.</p>
 	<p>O jogador pode ser transferido mesmo que esteja sem clube ou aposentado.</p>
 	<p>Caso a transferência por algum motivo não aconteça, deve existir uma sinalização dizendo que ela não está ativa.   ( Flag no banco de dados )</p>
 	<p>As transferências devem possuir uma data de início e uma previsão de fim. ( final de contrato ).</p>
