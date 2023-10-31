@@ -14,7 +14,11 @@ public class JogadorRepository : BaseRepository<Jogador>, IJogadorRepository
 
     public async Task<IEnumerable<Jogador>> BuscarJogadoresPorNacionalidadeAsync(string nacionalidade)
     {
-        var jogadoresFiltrados = await _context.Jogadores.Where(j => j.Nacionalidade.Equals(nacionalidade)).ToListAsync();
+        var jogadoresFiltrados = await _context.Jogadores
+            .Include(x => x.Clubes)
+            .ThenInclude(x => x.Clube)
+            .Where(j => j.Nacionalidade.Equals(nacionalidade))
+            .ToListAsync();
 
         return jogadoresFiltrados;
     }

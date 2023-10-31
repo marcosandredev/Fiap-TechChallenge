@@ -1,17 +1,13 @@
 ﻿using CBF.Domain.DTOs.Request;
 using CBF.Domain.Entities.Enums;
+using CBF.Infra.Repositories.Interfaces;
 using FluentValidation;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CBF.Service.Validation
 {
     public class JogadorUpdateRequestValidador : AbstractValidator<JogadorUpdateRequest>
     {
-        public JogadorUpdateRequestValidador()
+        public JogadorUpdateRequestValidador(IClubeRepository clubeRepository)
         {
 
             RuleFor(j => j.Nome)
@@ -26,6 +22,8 @@ namespace CBF.Service.Validation
 
             RuleFor(j => j.Peso)
                  .NotEmpty().WithMessage("Campo Peso é obrigatório!");
+
+            RuleFor(x => x.Contrato).SetValidator(new ClubeJogadorRequestValidator(clubeRepository));
 
         }
     }

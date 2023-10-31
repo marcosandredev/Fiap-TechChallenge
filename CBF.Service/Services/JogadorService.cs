@@ -30,7 +30,7 @@ public class JogadorService : IJogadorService
         jogador.PePreferido = jogadorAtualizado.PePreferido;
         jogador.Posicao = jogadorAtualizado.Posicao;
 
-        if (jogador.Clubes is null)
+        if (jogador.Clubes.Count == 0)
         {
             jogador.Clubes = new List<ClubeJogador>()
             {
@@ -58,9 +58,17 @@ public class JogadorService : IJogadorService
 
     public async Task<JogadorResponse> BuscaJogadorPorIdAsync(long id)
     {
-        var jogador = await _jogadorRepository.GetByIdAsync(id) ?? throw new NotFoundException();
+        var jogador = await _jogadorRepository.GetByIdAsync(id, x => x.Include(x => x.Clubes).ThenInclude(x => x.Clube)) ?? throw new NotFoundException();
 
         return _mapper.Map<JogadorResponse>(jogador);
+
+    }
+
+    public async Task<IEnumerable<JogadorResponse>> BuscaJogadoresAsync()
+    {
+        var jogador = await _jogadorRepository.GetAllAsync(include: x => x.Include(x => x.Clubes).ThenInclude(x => x.Clube));
+
+        return _mapper.Map<IEnumerable<JogadorResponse>>(jogador);
 
     }
 

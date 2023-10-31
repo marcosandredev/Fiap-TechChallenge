@@ -85,5 +85,12 @@ namespace CBF.API.Controllers
               var jogadores = await _jogadorService.BuscarJogadoresPorNacionalidadeAsync(nacionalidade);
               return Ok(jogadores);
         }
+
+        [HttpGet]
+        public async Task<IActionResult> BuscarJogadores()
+        {
+            var jogadores = await _jogadorService.BuscaJogadoresAsync();
+            return Ok(jogadores);
+        }
     }
 }

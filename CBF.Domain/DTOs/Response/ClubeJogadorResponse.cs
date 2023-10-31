@@ -6,4 +6,5 @@ public class ClubeJogadorResponse
     public DateTime DtInicioContrato { get; set; }
     public DateTime? DtFimContrato { get; set; }
     public double Salario { get; set; }
+    public ClubeResponse Clube { get; set; }
 }
