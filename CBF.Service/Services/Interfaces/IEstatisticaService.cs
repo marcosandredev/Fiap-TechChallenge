@@ -31,7 +31,5 @@ namespace CBF.Service.Services.Interfaces
         Task<IEnumerable<EstatisticaResponse>> GetJogadoresAssistenciasAsync(long idTemporada);
 
         Task<IEnumerable<EstatisticaResponse>> GetJogadoresPartidasAsync(long idTemporada);
-
-        Task<IEnumerable<EstatisticaClubeResponse>> GetEstatisticasClubesTemporada(EstatisticasClubesRequest request);
     }
 }

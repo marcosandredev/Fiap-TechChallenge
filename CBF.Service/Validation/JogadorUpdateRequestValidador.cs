@@ -23,7 +23,6 @@ namespace CBF.Service.Validation
             RuleFor(j => j.Peso)
                  .NotEmpty().WithMessage("Campo Peso é obrigatório!");
 
-            RuleFor(x => x.Contrato).SetValidator(new ClubeJogadorRequestValidator(clubeRepository));
 
         }
     }

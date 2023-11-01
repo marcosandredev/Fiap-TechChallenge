@@ -82,13 +82,6 @@ namespace CBF.Service.Services
             return _mapper.Map<EstatisticaJogadorClubeResponse>(estatistica);
         }
 
-        public async Task<IEnumerable<EstatisticaClubeResponse>> GetEstatisticasClubesTemporada(EstatisticasClubesRequest request)
-        {
-            var result = await _estatisticaJogadorRepository.GetEstatisticasClubesTemporada(request);
-
-            return result;
-        }
-
         public async Task<IEnumerable<EstatisticaResponse>> GetJogadoresAmarelosAsync(long idTemporada)
         {
             var result = await _estatisticaJogadorRepository.GetJogadorAmarelosAsync(idTemporada);

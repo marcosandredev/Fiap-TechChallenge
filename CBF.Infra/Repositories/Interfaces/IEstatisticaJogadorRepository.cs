@@ -16,6 +16,4 @@ public interface IEstatisticaJogadorRepository : IBaseRepository<EstatisticaJoga
 
     Task<IEnumerable<EstatisticaResponse>> GetJogadorPartidasAsync(long idTemporada);
 
-    Task<IEnumerable<EstatisticaClubeResponse>> GetEstatisticasClubesTemporada(EstatisticasClubesRequest request);
-
 }

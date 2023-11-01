@@ -74,7 +74,7 @@ public class ClubeService : IClubeService
 
     public async Task<ClubeResponse> BuscarClubeComJogadoresAsync(long id)
     {
-        var clube = await _clubeRepository.GetByIdAsync(id, x => x.Include(c => c.ClubesJogadores).ThenInclude(cj => cj.Jogador)) ?? throw new NotFoundException();
+        var clube = await _clubeRepository.GetByIdAsync(id, x => x.Include(c => c.TransferenciasClubeNovo).ThenInclude(cj => cj.Jogador)) ?? throw new NotFoundException();
 
         var clubeResponse = new ClubeResponse()
         {
@@ -84,7 +84,7 @@ public class ClubeService : IClubeService
             Pais = clube.Pais,
             Nome = clube.Nome,
             DTFundacao = clube.DtFundacao,
-            Jogadores = clube.ClubesJogadores.Select(x => _mapper.Map<JogadorResponse>(x.Jogador))
+            Jogadores = clube.TransferenciasClubeNovo.Select(x => _mapper.Map<JogadorResponse>(x.Jogador))
         };
 
         return clubeResponse;

@@ -49,6 +49,10 @@ namespace CBF.Service.Validation
             RuleFor(x => x.DtPrevisaoFimContrato)
                 .NotEmpty()
                 .WithMessage("O campo de Data Previsão Fim Contrato é obrigatório.");
+
+            RuleFor(x => x)
+                .Must(x => x.DtInicioContrato < x.DtPrevisaoFimContrato)
+                .WithMessage("A data de início do contrato deve ser menor que a data de previsão de fim do contrato.");
         }
     }
 }

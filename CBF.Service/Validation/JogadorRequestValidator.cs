@@ -33,8 +33,6 @@ namespace CBF.Service.Validation
             RuleFor(j => j.Altura)
                 .NotEmpty().WithMessage("Campo Altura é obrigatório!");
 
-            RuleFor(x => x.Contrato).SetValidator(new ClubeJogadorRequestValidator(clubeRepository));
-
         }
 
     }

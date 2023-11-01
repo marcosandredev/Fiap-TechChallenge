@@ -4,6 +4,7 @@ using CBF.Infra.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CBF.Infra.Migrations
 {
     [DbContext(typeof(CBFContext))]
-    partial class CBFContextModelSnapshot : ModelSnapshot
+    [Migration("20231101003359_seed-clube")]
+    partial class seedclube
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -126,6 +129,9 @@ namespace CBF.Infra.Migrations
                     b.Property<int>("Amarelos")
                         .HasColumnType("int");
 
+                    b.Property<int>("Ano")
+                        .HasColumnType("int");
+
                     b.Property<int>("Assistencias")
                         .HasColumnType("int");
 
@@ -174,6 +180,9 @@ namespace CBF.Infra.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
 
                     b.Property<int>("Amarelos")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Ano")
                         .HasColumnType("int");
 
                     b.Property<int>("Assistencias")

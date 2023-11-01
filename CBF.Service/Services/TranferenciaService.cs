@@ -5,6 +5,7 @@ using CBF.Domain.Entities;
 using CBF.Domain.Exceptions;
 using CBF.Infra.Repositories.Interfaces;
 using CBF.Service.Services.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace CBF.Service.Services;
 public class TranferenciaService : ITransferenciaService
@@ -21,14 +22,18 @@ public class TranferenciaService : ITransferenciaService
 
     public async Task<IEnumerable<TransferenciaResponse>> BuscarTransferenciaPorIdClube(long id)
     {
-        var transferencias = await _transfRepository.BuscarTransferenciasPorIdClube(id) ?? throw new NotFoundException();
+        var transferencias = await _transfRepository.BuscarTransferenciasPorIdClube(id);
 
         return _mapper.Map<IEnumerable<TransferenciaResponse>>(transferencias);
     }
 
     public async Task<TransferenciaResponse> BuscarTransferenciaPorId(long id)
     {
-        var response = await _transfRepository.GetByIdAsync(id) ?? throw new NotFoundException();
+        var response = await _transfRepository.GetByIdAsync(id, x => x.Include(t => t.Jogador)
+                                                                                                      .Include(t => t.ClubeNovo)
+                                                                                                      .Include(t => t.ClubeAnterior)
+                                                                                                      .Include(t => t.Temporada)
+                                                                        ) ?? throw new NotFoundException();
 
         return _mapper.Map<TransferenciaResponse>(response);
     }

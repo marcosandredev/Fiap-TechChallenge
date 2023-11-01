@@ -14,5 +14,7 @@ public class DtoToModelProfile : Profile
         CreateMap<ClubeRequest, Clube>();
         CreateMap<ClubeJogadorRequest, ClubeJogador>();
         CreateMap<TransferenciaRequest, Transferencias>();
+        CreateMap<EstatisticaJogadorClubeRequest, EstatisticaJogadorClube>();
+        CreateMap<EstatisticaJogadorRequest, EstatisticaJogador>();
     }
 }

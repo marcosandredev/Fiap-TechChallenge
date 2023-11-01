@@ -14,28 +14,6 @@ public class EstatisticaJogadorRepository : BaseRepository<EstatisticaJogador>, 
     {
     }
 
-    public async Task<IEnumerable<EstatisticaClubeResponse>> GetEstatisticasClubesTemporada(EstatisticasClubesRequest request)
-    {
-        var consulta = _context.EstatisticasJogadorClube
-        .Join(_context.Clubes, e => e.IdClube, c => c.Id, (e, c) => new { e, c })
-        .Join(_context.Temporadas, ec => ec.e.IdTemporada, t => t.Id, (ec, t) => new { ec.e, ec.c, NomeTemporada = t.Nome })
-         .Where(ec => ec.e.IdTemporada == request.idTemporada)
-        .GroupBy(ec => new { ec.c.Nome, ec.NomeTemporada })
-        .Select(grupo => new EstatisticaClubeResponse
-        {
-            Temporada = grupo.Key.NomeTemporada,
-            Clube = grupo.Key.Nome,
-            Gols = request.Gols? grupo.Sum(ec => ec.e.Gols) : 0,
-            Partidas = request.Partidas? grupo.Sum(ec => ec.e.Partidas) : 0,
-            Assistencias = request.Assistencias? grupo.Sum(ec => ec.e.Assistencias) : 0,
-            Vermelhos = request.Vermelhos? grupo.Sum(ec => ec.e.Vermelhos) : 0,
-            Amarelos = request.Amarelos? grupo.Sum(ec => ec.e.Amarelos) : 0
-
-        });
-
-        return await consulta.ToListAsync();
-    }
-
     public async Task<IEnumerable<EstatisticaResponse>> GetJogadorAmarelosAsync(long idTemporada)
     {
         var consulta = from ej in _context.EstatisticasJogador
@@ -46,7 +24,7 @@ public class EstatisticaJogadorRepository : BaseRepository<EstatisticaJogador>, 
                        {
                            Id = j.Id,
                            Nome = j.Nome,
-                           Agrupador = ej.Gols.ToString()
+                           Agrupador = ej.Amarelos.ToString()
                        };
 
         return await consulta.ToListAsync();
@@ -62,7 +40,7 @@ public class EstatisticaJogadorRepository : BaseRepository<EstatisticaJogador>, 
                        {
                            Id = j.Id,
                            Nome = j.Nome,
-                           Agrupador = ej.Gols.ToString()
+                           Agrupador = ej.Assistencias.ToString()
                        };
 
         return await consulta.ToListAsync();
@@ -88,13 +66,13 @@ public class EstatisticaJogadorRepository : BaseRepository<EstatisticaJogador>, 
     {
         var consulta = from ej in _context.EstatisticasJogador
                        join j in _context.Jogadores on ej.IdJogador equals j.Id
-                       where ej.IdTemporada == 1 && j.Ativo == true
+                       where ej.IdTemporada == idTemporada && j.Ativo == true
                        orderby ej.Partidas descending
                        select new EstatisticaResponse
                        {
                            Id = j.Id,
                            Nome = j.Nome,
-                           Agrupador = ej.Gols.ToString()
+                           Agrupador = ej.Partidas.ToString()
                        };
 
 
@@ -111,7 +89,7 @@ public class EstatisticaJogadorRepository : BaseRepository<EstatisticaJogador>, 
                        {
                            Id = j.Id,
                            Nome = j.Nome,
-                           Agrupador = ej.Gols.ToString()
+                           Agrupador = ej.Vermelhos.ToString()
                        };
 
         return await consulta.ToListAsync();

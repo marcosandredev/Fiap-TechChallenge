@@ -11,7 +11,13 @@ public class TransferenciaRepository : BaseRepository<Transferencias>, ITransfer
 
     public async Task<IEnumerable<Transferencias>> BuscarTransferenciasPorIdClube(long id)
     {
-        var transferenciasClube = await _context.Transferencias.Where(transf => transf.Id == id).ToListAsync();
+        var transferenciasClube = await _context.Transferencias
+            .Include(x => x.ClubeAnterior)
+            .Include(x => x.ClubeNovo)
+            .Include(x => x.Jogador)
+            .Include(x => x.Temporada)
+            .Where(transf => transf.Id == id)
+            .ToListAsync();
 
         return transferenciasClube;
     }

@@ -38,7 +38,7 @@ namespace CBF.API.Controllers
             return Ok($"Transferência {response.Id} foi deletada da base");
         }
 
-        [HttpGet("Buscar-Transferencias-Por-Clube/{idClube}")]
+        [HttpGet("Buscar-Transferencias-Por-Clube/{id}")]
         public async Task<IActionResult> BuscarTransferenciasClube([FromRoute] long id)
         {
             var response = await _transferenciaService.BuscarTransferenciaPorIdClube(id);

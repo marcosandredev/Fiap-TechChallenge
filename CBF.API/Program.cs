@@ -1,5 +1,7 @@
 using CBF.API.Configuration;
 using CBF.Infra.Context;
+using CBF.Service.Services;
+using CBF.Service.Services.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +14,7 @@ builder.Services.AddInfrastructureAndServices(builder.Configuration)
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
 
 var app = builder.Build();
 

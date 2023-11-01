@@ -107,13 +107,5 @@ namespace CBF.API.Controllers
 
             return Ok(result);
         }
-
-        [HttpPost("Buscar-Clubes-Temporada")]
-        public async Task<IActionResult> GetEstatisticasClubesTemporada([FromBody] EstatisticasClubesRequest request)
-        {
-            var result = await _estatisticaService.GetEstatisticasClubesTemporada(request);
-
-            return Ok(result);
-        }
     }
 }

@@ -12,6 +12,6 @@ namespace CBF.Domain.DTOs.Response
         public PePreferido PePreferido { get; set; }
         public double Peso { get; set; }
         public double Altura { get; set; }
-        public IEnumerable<ClubeJogadorResponse> Contrato { get; set; }
+        public IEnumerable<JogadorTransferenciaResponse> Transferencias { get; set; }
     }
 }

@@ -1,5 +1,7 @@
 ﻿using CBF.API.Filters;
 using CBF.Infra.Context;
+using CBF.Service.Services.Interfaces;
+using CBF.Service.Services;
 using CBF.Service.Validation;
 using FluentValidation;
 using FluentValidation.AspNetCore;
@@ -27,6 +29,9 @@ public static class DependencyInjection
                                 .UsingRegistrationStrategy(RegistrationStrategy.Skip)
                                 .AsMatchingInterface()
                                 .WithScopedLifetime());
+
+
+        services.AddScoped<ITransferenciaService, TranferenciaService>();
 
         return services;
     }

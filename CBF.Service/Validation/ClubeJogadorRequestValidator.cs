@@ -17,5 +17,9 @@ public class ClubeJogadorRequestValidator : AbstractValidator<ClubeJogadorReques
         RuleFor(x => x.DtFimContrato).NotEmpty();
 
         RuleFor(x => x.Salario).NotEmpty();
+
+        RuleFor(x => x)
+                .Must(x => x.DtInicioContrato < x.DtFimContrato)
+                .WithMessage("A data de início do contrato deve ser menor que a data de fim do contrato.");
     }
 }

@@ -19,7 +19,6 @@ namespace CBF.Infra.Mappings
             builder.ToTable("EstatisticaJogadorClube");
             builder.Property(e => e.IdJogador).IsRequired();
             builder.Property(e => e.IdClube).IsRequired();
-            builder.Property(e => e.Ano).IsRequired();
             builder.Property(e => e.Partidas).IsRequired();
             builder.Property(e => e.Gols).IsRequired();
             builder.Property(e => e.Assistencias).IsRequired();

@@ -9,7 +9,6 @@
         public int PePreferido { get; set; }
         public double Peso { get; set; }
         public double Altura { get; set; }
-        public ClubeJogadorRequest Contrato { get; set; }
 
     }
 }

@@ -16,12 +16,13 @@ namespace CBF.Service.Validation
                 .Must(x => temporadaRepository.ExistAsync(t => t.Id == x).Result)
                 .WithMessage("Temporada não cadastrada.");
 
-            RuleFor(e => e.Ano).NotEmpty().WithMessage("O campo Ano é obrigatório.");
-            RuleFor(e => e.Partidas).NotEmpty().WithMessage("O campo Partidas é obrigatório.");
-            RuleFor(e => e.Gols).NotEmpty().WithMessage("O campo Gols é obrigatório.");
-            RuleFor(e => e.Assistencias).NotEmpty().WithMessage("O campo Assistencias é obrigatório.");
-            RuleFor(e => e.Amarelos).NotEmpty().WithMessage("O campo Amarelos é obrigatório.");
-            RuleFor(e => e.Vermelhos).NotEmpty().WithMessage("O campo Vermelhos é obrigatório.");
+            RuleFor(e => e.Partidas).GreaterThanOrEqualTo(0).WithMessage("O campo Partidas deve ser superior ou igual a 0.");
+            RuleFor(e => e.Gols).GreaterThanOrEqualTo(0).WithMessage("O campo Gols deve ser superior ou igual a 0.");
+            RuleFor(e => e.Assistencias).GreaterThanOrEqualTo(0).WithMessage("O campo Assistencias deve ser superior ou igual a 0.");
+            RuleFor(e => e.Amarelos).GreaterThanOrEqualTo(0).WithMessage("O campo Amarelos deve ser superior ou igual a 0.");
+            RuleFor(e => e.Vermelhos).GreaterThanOrEqualTo(0).WithMessage("O campo Vermelhos deve ser superior ou igual a 0.");
         }
+
+
     }
 }
