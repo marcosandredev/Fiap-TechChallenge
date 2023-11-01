@@ -35,6 +35,7 @@ namespace CBF.API.Controllers
         }
 
         [HttpPut("Atualizar-Estatistica-Jogador/{id}")]
+        [Authorize(Roles = "Administrador")]
         public async Task<IActionResult> AtualizarEstatisticaJogador([FromRoute] long id, [FromBody] EstatisticaJogadorRequest request)
         {
             var estatistica = await _estatisticaService.AtualizarEstatisticaJogadorAsync(id, request);
@@ -43,6 +44,7 @@ namespace CBF.API.Controllers
         }
 
         [HttpPut("Atualizar-Estatistica-Jogador-Clube/{id}")]
+        [Authorize(Roles = "Administrador")]
         public async Task<IActionResult> AtualizarEstatisticaJogadorClube([FromRoute] long id, [FromBody] EstatisticaJogadorClubeRequest request)
         {
             var estatistica = await _estatisticaService.AtualizarEstatisticaJogadorClubeAsync(id, request);
@@ -51,6 +53,7 @@ namespace CBF.API.Controllers
         }
 
         [HttpPost("Criar-Estatistica-Jogador")]
+        [Authorize(Roles = "Administrador")]
         public async Task<ActionResult> CriarEstatisticaJogador([FromBody] EstatisticaJogadorRequest request)
         {
             var response = await _estatisticaService.CadastrarEstatisticaJogadorAsync(request);
@@ -59,6 +62,7 @@ namespace CBF.API.Controllers
         }
 
         [HttpPost("Criar-Estatistica-Jogador-Clube")]
+        [Authorize(Roles = "Administrador")]
         public async Task<ActionResult> CriarEstatisticaJogadorClube([FromBody] EstatisticaJogadorClubeRequest request)
         {
             var response = await _estatisticaService.CadastrarEstatisticaJogadorClubeAsync(request);
