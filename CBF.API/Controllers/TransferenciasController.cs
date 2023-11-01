@@ -17,6 +17,7 @@ namespace CBF.API.Controllers
         }
 
         [HttpPost("Criar-Transferencia")]
+        [Authorize(Roles = "Administrador")]
         public async Task<IActionResult> CriarTransferencia([FromBody] TransferenciaRequest request)
         {
             var response = await _transferenciaService.CriarTransferenciaAsync(request);
@@ -46,6 +47,7 @@ namespace CBF.API.Controllers
         }
 
         [HttpPut("Atualizar-Transferencia/{id}")]
+        [Authorize(Roles = "Administrador")]
         public async Task<IActionResult> AtualizarTransferencia([FromRoute] long id, [FromBody] TransferenciaRequest request)
         {
             var transferenciaAtualizada = await _transferenciaService.AtualizarTransferenciaAsync(id, request);
