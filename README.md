@@ -52,6 +52,11 @@ Com a crescente complexidade das operações envolvendo jogadores, clubes, trans
 	<p>Deve existir uma consulta para mostrar os jogadores com mais partidas por temporada.</p>
 	<p>Deve existar uma consulta para mostrar os clubes com mais gols, cartões, assistências e partidas por temporada.</p>
  	<br>
+
+  <h3 align="center">Projeto CBF.API</h3>
+<p>O projeto foi desenvolvido pensando em solucionar o problema da api antiga que estava com problemas de performance. Por isso foi escolhido a linguagem que fornece a melhor eficiência. </p>
+<br>
+
 <h3 align="center">Para poder rodar o projeto</h3>
 <br>
 <p>Clone o projeto usando Visual Studio 2022 ou Visual Studio Code</p>
@@ -68,6 +73,8 @@ Com a crescente complexidade das operações envolvendo jogadores, clubes, trans
     "CBFConnection": Server=myServerAddress;Database=myDataBase;User Id=myUsername;Password=myPassword;
   }</pre>
 <br>
+
+
 
 <p>Ao rodar o projeto deve-se criar um usuário Administrador para poder inserir, atualizar e deletar os registros:</p>
 <pre>api/usuário/create</pre>
